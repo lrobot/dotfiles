@@ -1,8 +1,13 @@
 
 if [ -f ~/.ssh/my_vars ]; then
   source ~/.ssh/my_vars
+else
+  echo "no ~/.ssh/my_vars"
+  echo set my name as "noname"
+  export MY_NAME=noname
+  export MY_EMAIL=noname@gmail.com
+  export MY_DISK_ROOT=/not_this_disk
 fi
-
 
 export PATH="~/depot_tools:$PATH";
 test -e "${HOME}/.iterm2_shell_integration.bash" && source "${HOME}/.iterm2_shell_integration.bash"
