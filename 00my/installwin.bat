@@ -8,10 +8,10 @@ mklink /d vimfiles dotfiles\.vim
 rmdir  /q .vim
 mklink /d .vim dotfiles\.vim
 
-del /q .bash_rc
-mklink .bash_rc dotfiles\00my\.bash_rc
+del /q .bashrc
+mklink .bashrc dotfiles\00my\.bashrc
 del /q .bash_profile
-mklink .bash_profile dotfiles\.bash_profile
+mklink .bash_profile dotfiles\00my\.bash_profile
 
 del /q .gitconfig
 mklink .gitconfig dotfiles\00my\.gitconfig

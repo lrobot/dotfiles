@@ -44,7 +44,8 @@ create_symlink .inputrc dotfiles/.inputrc
 create_symlink .npmrc dotfiles/00my/.npmrc
 create_symlink .pythonrc dotfiles/00my/.pythonrc
 create_symlink .lldbinit dotfiles/00my/.lldbinit
-create_symlink .bash_rc dotfiles/00my/.bash_rc
+create_symlink .bashrc dotfiles/00my/.bashrc
+create_symlink .bash_profile dotfiles/00my/.bash_profile
 create_symlink .gitconfig dotfiles/00my/.gitconfig
 create_symlink .gitignore dotfiles/00my/.gitignore
 create_symlink _vimrc dotfiles/00my/.vimrc

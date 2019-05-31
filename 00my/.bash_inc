@@ -1,6 +1,6 @@
-source ~/dotfiles/.bash_rc
+source ~/dotfiles/.bashrc
 
-if [ -f ~/.ssh/my_vars ] then
+if [ -f ~/.ssh/my_vars ]; then
   source ~/.ssh/my_vars
 fi
 
@@ -9,7 +9,7 @@ export PATH="~/depot_tools:$PATH";
 test -e "${HOME}/.iterm2_shell_integration.bash" && source "${HOME}/.iterm2_shell_integration.bash"
 export NVM_DIR=~/.nvm
 [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
-alias ssh='ssh -A -o ServerAliveInterval=5'
+
 GIT_AUTHOR_NAME=$MY_NAME
 GIT_COMMITTER_NAME="$MY_NAME"
 git config --global user.name "$MY_NAME"
@@ -88,7 +88,7 @@ lamongo () {
 
 
 #export PYTHONSTARTUP=~/.pythonrc
-export PATH=$PATH ${DISK_ROOT}/dtools/depot_tools
+export PATH=$PATH:${DISK_ROOT}/dtools/depot_tools
 export PATH=$PATH:~/depot_tools
 export PATH=$PATH:/root/depot_tools
 alias ws='cd ${DISK_ROOT}/works'
@@ -101,6 +101,7 @@ alias xcodeu7='sudo xcode-select -s ${DISK_ROOT}/apps/Xcode7.2.app/Contents/Deve
 alias xcodeu='sudo xcode-select -s ${DISK_ROOT}/apps/Xcode.app/Contents/Developer'
 alias useproxylocal='export ALL_PROXY=socks5://127.0.0.1:1080'
 alias useproxynone='export ALL_PROXY='
+alias ssh='ssh -A -o ServerAliveInterval=5'
 alias sshsocks='ssh -A -o ServerAliveInterval=5 -D 127.0.0.1:1080'
 alias rtclibrsync_ios='rsync -av ${DISK_ROOT}/works/webrtc_ios_49/src/out_ios_libs/fat/ ${DISK_ROOT}/works/ULUC_Enterprise_ios//ULUC/SDK/grrtcapi.lib/'
 alias ctags='ctags --recurse=yes'
