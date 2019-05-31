@@ -1,4 +1,3 @@
-source ~/dotfiles/.bashrc
 
 if [ -f ~/.ssh/my_vars ]; then
   source ~/.ssh/my_vars
@@ -101,6 +100,7 @@ alias xcodeu7='sudo xcode-select -s ${DISK_ROOT}/apps/Xcode7.2.app/Contents/Deve
 alias xcodeu='sudo xcode-select -s ${DISK_ROOT}/apps/Xcode.app/Contents/Developer'
 alias useproxylocal='export ALL_PROXY=socks5://127.0.0.1:1080'
 alias useproxynone='export ALL_PROXY='
+alias sshp='eval `ssh-agent` && ssh-add ~/.ssh/id_rsa'
 alias ssh='ssh -A -o ServerAliveInterval=5'
 alias sshsocks='ssh -A -o ServerAliveInterval=5 -D 127.0.0.1:1080'
 alias rtclibrsync_ios='rsync -av ${DISK_ROOT}/works/webrtc_ios_49/src/out_ios_libs/fat/ ${DISK_ROOT}/works/ULUC_Enterprise_ios//ULUC/SDK/grrtcapi.lib/'
@@ -118,7 +118,6 @@ alias composer="php /usr/local/bin/composer.phar"
 alias netrtccp='cp -a ${DISK_ROOT}/works/rtc_ios_sdk/thirdparty/netrtc.ios ${DISK_ROOT}/works/ULUC_Enterprise_ios/ULUC/SDK/'
 
 alias vim='vim -p'
-
 
 
 
