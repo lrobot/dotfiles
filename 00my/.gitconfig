@@ -1,8 +1,12 @@
 [include]
-    path = ~/dotfiles/.gitconfig
-orphank = !gitk --all `git reflog | cut -c1-7`&
-orphanl = !git --pretty=oneline --abbrev-commit --graph --decorate `git reflog | cut -c1-7`
-orphanl = !git log --pretty=oneline --abbrev-commit --graph --decorate git reflog | cut -d " " -f 1
+	path = ~/dotfiles/.gitconfig
+[alias]
+	orphank = !gitk --all `git reflog | cut -c1-7`&
+	orphanl = !git --pretty=oneline --abbrev-commit --graph --decorate `git reflog | cut -c1-7`
+	orphanl = !git log --pretty=oneline --abbrev-commit --graph --decorate git reflog | cut -d " " -f 1
+	#https://stackoverflow.com/questions/21552157/git-alias-to-chain-add-commit-pull-push
+	commitall = "!func(){ set -x; git add . && git commit -aqm \""${1}\"" ; git pull -q --no-progress && git push -q; }; func"
+	ca = "!func(){ set -x; git add . && git commit -aqm \""${1}\"" ; git pull -q --no-progress && git push -q; }; func"
 [user]
 	name = lrobot
 	email = lrobot.qq@gmail.com
@@ -24,6 +28,6 @@ orphanl = !git log --pretty=oneline --abbrev-commit --graph --decorate git reflo
 	#helper = wincred
 	helper = cache --timeout=3600
 [commit]
-    # https://help.github.com/articles/signing-commits-using-gpg/
-    gpgsign = false
+	# https://help.github.com/articles/signing-commits-using-gpg/
+	gpgsign = false
 
