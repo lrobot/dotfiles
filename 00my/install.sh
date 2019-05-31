@@ -57,5 +57,6 @@ create_symlink bash_lib dotfiles/00my/bash_lib
 create_symlink .ssh ~/my_notes/00mycfg/.ssh
 #https://medium.com/@tahteche/how-git-treats-changes-in-file-permissions-f71874ca239d
 # file permission user+group+other, because git not record group+other permission, need chmod 600 .ssh/config
-chmod 600 ~/my_notes/00mycfg/.ssh/config
+chmod 600 ~/.ssh/*
+
 
