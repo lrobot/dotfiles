@@ -34,7 +34,6 @@ create_symlink .editorconfig dotfiles/.editorconfig
 create_symlink .exports dotfiles/.exports
 create_symlink .functions dotfiles/.functions
 create_symlink .gdbinit dotfiles/.gdbinit
-create_symlink .gitattributes dotfiles/.gitattributes
 create_symlink .hgignore dotfiles/.hgignore
 create_symlink .hushlogin dotfiles/.hushlogin
 create_symlink .inputrc dotfiles/.inputrc
@@ -48,6 +47,7 @@ create_symlink .bashrc dotfiles/00my/.bashrc
 create_symlink .bash_profile dotfiles/00my/.bash_profile
 create_symlink .gitconfig dotfiles/00my/.gitconfig
 create_symlink .gitignore dotfiles/00my/.gitignore
+create_symlink .gitattributes dotfiles/00my/.gitattributes
 create_symlink _vimrc dotfiles/00my/.vimrc
 create_symlink .vimrc dotfiles/00my/.vimrc
 create_symlink .gvimrc dotfiles/00my/.gvimrc
@@ -55,3 +55,7 @@ create_symlink .gvimrc dotfiles/00my/.gvimrc
 create_symlink bash_lib dotfiles/00my/bash_lib
 
 create_symlink .ssh ~/my_notes/00mycfg/.ssh
+#https://medium.com/@tahteche/how-git-treats-changes-in-file-permissions-f71874ca239d
+# file permission user+group+other, because git not record group+other permission, need chmod 600 .ssh/config
+chmod 600 ~/my_notes/00mycfg/.ssh/config
+
