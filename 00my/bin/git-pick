@@ -1,0 +1,235 @@
+#!/bin/bash
+
+##
+# Git utility to add the ability to create and use list indexes for use with
+# various git aliases.
+#
+# Installation:
+#   Put this script anywhere in your system's path.
+#
+# Usage:
+#   1. First create git aliases in your .gitconfig which create indexed lists:
+#      Ex.
+#        br = !git -c color.ui=always branch "$@" | git pick '^\\s+(.*)'
+#        st = !git -c color.ui=always status -sb | git pick '^\\s*[AMDR?]+\\s*(?:.* -> )?(.*)'
+#      Those aliases pipe the branch list and status list to git-pick for it to
+#      parse and index. We force git to use colors even though the output is
+#      piped, so that git-pick can still retain the colors in the console
+#      output it produces. The pattern supplied to 'git pick' is used to define
+#      how to pull items from the resulting output (or input from git pick's
+#      perspective). Notice that we use single quotes around the pattern and
+#      have to double escape the backslashes here to appease git's config
+#      parser. Also note that git-pick uses perl for the pattern matching so
+#      you can utilize the features of perl's regular expression patterns not
+#      otherwise found in bash, sed, etc.
+#   2. Once you have your list generating aliases, you can then create aliases
+#      which can act on those lists:
+#      Ex.
+#        co = pick checkout
+#        ad = pick add --all
+#        ...
+#      The first arg to the git pick command for these aliases must be a valid
+#      git command or alias along with any default args. With these aliases you
+#      can now supply either branch, path, etc names as usual, or you can
+#      supply one or more numbers (or a range like 2-5) corresponding to the
+#      index values pre-pended to the lines outputted by our 'br' and 'st'
+#      aliases found in step #1.
+#
+# The pick command also supports some options:
+#   -v
+#      This enables verbose output from the pick command
+#   -c
+#      When expanding arguments, first print out the resulting git command and
+#      prompt for confirmation before running it.
+#   -e
+#      Instead of running git with the expanded arguments, just echo the
+#      expanded result.
+#   -r
+#      When supplied, git pick will abort if no args have been supplied to
+#      expand. This is helpful to avoid triggering any git alias whose default
+#      behavior is to act on all files (eg. git add --all, git clean, etc.)
+#      should you accidentally forget to supply any indexes to expand.
+#   -t <type>
+#      This allows you to have a pick list per type of output. For instance,
+#      some pick lists contain revisions only (branch/tag names, commit hashes,
+#      etc), while others contain file paths, so you might want to separate
+#      these out into separate lists so that your aliases acting on those lists
+#      can be limited to expanding revision arguments or file arguments.
+#      Ex:
+#        br = !git -c color.ui=always branch "$@" | git pick -t rev '^\\s+(.*)'
+#        st = !git -c color.ui=always status -sb | git pick -t file '^\\s*[AMDR?]+\\s*(?:.* -> )?(.*)'
+#        co = pick -t rev checkout
+#        ad = pick -t file add --all
+#      Using the above aliases you can run a `$ git st` followed by a `$ git
+#      br` and the `ad` alias will only expand results from the `st` list, and
+#      the `co` alias will expand from the `br` list.
+#      Please note the limitation here though, in that the `co` alias will now
+#      only support expanding revisions, and not files, which can be seen as a
+#      safer option since you'd never accidentally checkout a modified file.
+#
+# git bash completion:
+#   By default git can handle argument completion on simple aliases, but it
+#   can't handle pick aliases like those found above. However if you look at my
+#   bash completion script:
+#     https://github.com/ervandew/dotfiles/blob/master/.bash_completion.d/git.sh
+#   you'll see a section dedicated to handling the translation of pick aliases
+#   to the git command they invoke so that the default git bash completion can
+#   then complete their arguments.
+##
+set -e
+
+IFS=$'\n'
+
+# attempt to have a separate list per terminal to prevent using a number from a
+# list generated elsewhere.
+ID="-tty-$(basename $(tty))"
+if [ -n "$TMUX" ] ; then
+  ID="-tmux-$(echo $(basename $TMUX) | sed 's|,|-|g')-$(echo $TMUX_PANE | sed 's|%||')"
+elif [ -n "$WINDOWID" ] ; then
+  ID="-window-$WINDOWID"
+fi
+
+TYPE=""
+VERBOSE=false
+CONFIRM=false
+ECHO=false
+REQUIRE_ARGS=false
+while [ "$1" == "-t" -o "$1" == "-r" -o "$1" == "-v" -o "$1" == "-c" -o "$1" == "-e" ] ; do
+  # allow optional -t name to separate lists by the type of lists they return
+  # (files vs revision (commit hash, branch, tag), etc)
+  if [ "$1" == "-t" ] ; then
+    TYPE="-${2}"
+    shift; shift
+  # flag to indicate that at least one arg must be expanded
+  elif [ "$1" == "-r" ] ; then
+    REQUIRE_ARGS=true
+    shift
+  # verbose flag to show the final expanded command
+  elif [ "$1" == "-v" ] ; then
+    VERBOSE=true
+    shift
+  # confirm flag to have the user accept the expanded command before running it.
+  elif [ "$1" == "-c" ] ; then
+    CONFIRM=true
+    shift
+  # flag to indicate that the expanded args should be echoed instead of passed
+  # to git.
+  elif [ "$1" == "-e" ] ; then
+    ECHO=true
+    shift
+  fi
+done
+
+if [ "$1" == "--" ] ; then
+  shift
+fi
+
+GITDIR=`git rev-parse --git-dir 2> /dev/null`
+GITPICK="$GITDIR/git-pick-list${TYPE}${ID}"
+
+if $VERBOSE ; then
+  echo verbose: pick list: $GITPICK
+fi
+
+function _list(){
+  count=0
+  ignore="^#"
+  pattern=$1
+  rm -f $GITPICK
+  for line in $(cat) ; do
+    if [[ "$line" =~ $ignore ]] ; then
+      echo "     $line"
+      continue
+    fi
+
+    # remove terminal color codes
+    item=$(echo $line | perl -pe 's|\e\[\d*m||g')
+
+    if [ -n "$pattern" ] ; then
+      if [ ! -z "$(echo $item | perl -ne "print unless /$pattern/")" ] ; then
+        echo "     $line"
+        continue
+      fi
+      item=$(echo $item | perl -pe "s|$pattern|\\1|g")
+    fi
+
+    echo $item >> $GITPICK
+    printf "\e[38;5;239m[%2s]\e[0m %s\n" $count "$line"
+    count=$(($count + 1))
+  done
+}
+
+function _expand(){
+  files=()
+  if [ -f $GITPICK ] ; then
+    for line in $(cat $GITPICK) ; do
+      files+=($line)
+    done
+  fi
+
+  for arg in "$@" ; do
+    result=$arg
+    indexes=()
+    # individual index
+    if [[ $arg =~ ^[0-9]+$ ]] ; then
+      indexes=($arg)
+    # range
+    elif [[ $arg =~ ^[0-9]+-[0-9]+$ ]] ; then
+      indexes=($(seq ${arg%-*} ${arg#*-}))
+    fi
+
+    if [ ${#indexes[@]} -gt 0 ] ; then
+      for index in ${indexes[@]} ; do
+        result=${files[$index]}
+        if [ -z "$result" ] ; then
+          echo "git-pick: failed to resolve index: $index" 1>&2
+          exit 1
+        fi
+        printf "%s\n" "$result"
+      done
+    else
+      printf "%s\n" "$result"
+    fi
+  done
+}
+
+# before every run, remove pick lists older than 5 minutes
+find .git -name "git-pick-list*" -mmin +5 -delete
+
+if [ -t 0 ] ; then
+  if [[ $REQUIRE_ARGS && -e "$@" ]] ; then
+    exit 1
+  fi
+
+  expanded=$(_expand "$@") || exit $?
+  compare=$(echo $expanded | sed 's|\n| |g')
+
+  if $REQUIRE_ARGS ; then
+    if [[ "$compare" == "$@" ]] ; then
+      echo no args supplied to expand.
+      exit
+    fi
+  fi
+
+  if $CONFIRM ; then
+    # don't confirm if nothing was expanded.
+    if [[ "$compare" != "$@" ]] ; then
+      echo git $expanded
+      read -p "Execute the above command (y/n)? "
+      if [ "$REPLY" != "y" ] ; then
+        echo canceled.
+        exit
+      fi
+    fi
+  elif $VERBOSE ; then
+    echo verbose: git $expanded
+  fi
+
+  if $ECHO ; then
+    echo $expanded
+  else
+    git $expanded
+  fi
+else
+  _list  "$@"
+fi

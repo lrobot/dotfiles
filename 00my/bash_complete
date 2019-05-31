@@ -1,0 +1,21 @@
+shopt -u hostcomplete
+
+
+bash_compelte_dir="$( cd -P "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+
+ssh_target_file=`get_keycfg_dir`/known_ssh_targets
+_dossh() 
+{
+    local cur prev opts
+    COMPREPLY=()
+    cur="${COMP_WORDS[COMP_CWORD]}"
+    prev="${COMP_WORDS[COMP_CWORD-1]}"
+    opts=""
+    if [ -f ${ssh_target_file} ]; then
+      opts=`grep -v -E "^[[:space:]]*#|^[[:space:]]*$" ${ssh_target_file}`
+      #opts=`cat ${ssh_target_file}`
+    fi
+    COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+    return 0
+}
+complete -F _dossh dossh

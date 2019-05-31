@@ -1,0 +1,16 @@
+ack.vim
+ctrlp.vim
+editorconfig-vim
+python-mode
+syntastic
+tabular
+tagbar
+vim-airline
+vim-erlang-compiler
+vim-erlang-omnicomplete
+vim-erlang-tags
+vim-fugitive
+vim-gitgutter
+vim-javascript
+vim-vinegar
+YouCompleteMe

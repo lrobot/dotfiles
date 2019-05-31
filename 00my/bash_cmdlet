@@ -1,0 +1,131 @@
+#!/bin/bash
+
+dolock() {
+	lockfile=$1
+	if ( set -o noclobber; echo "$$" > "$lockfile") 2> /dev/null; then
+	  trap 'rm -f "$lockfile"; exit $?' INT TERM EXIT
+		return 0
+	else
+		return 1
+	fi
+}
+
+endian() {
+out=`echo 12 | od -x | grep "3231"`
+if [ -z "$out" ] ; then
+  echo "big-endian"
+else
+  echo "little-endian"
+fi
+}
+
+
+lr_random() { if [ -z "$1" ]; then num=8 ; else num=$1 ; fi; head -c $num /dev/urandom | base64 -w 0 | head -c $num ; echo; };
+value_of_key() { if [ -f "$1" ]; then cat "$1" | grep "$2:" | sed -e s/.*://g; else echo; fi };
+value_of_key_or_random() { v=`value_of_key "$1" "$2"`; if [ -z "$v" ]; then v=`lr_random`; fi; echo $v; };
+
+
+mvlower() {
+filename=$1
+mv $filename $(echo $filename | tr [:upper:] [:lower:])
+}
+
+mp3toamr() {
+[ "$2" = "" ] && echo "$0 xxx.mp3 yyy.amr" && return
+filename=$1
+targetname=$2
+ffmpeg -i $filename -ar 16000 -ac 1 -ab 23850 -acodec libamr_wb "$2" 
+}
+
+mvspace2underline() {
+filename=$1
+mv "$filename" "$(echo "$filename" | tr [\ \\t\\v] [___])"
+}
+
+downloadsourcefedora () {
+  if [ -z "${1}" ]; then
+    echo "${0} cvscmd cvsarg"
+    echo "${0} checkout module"
+    echo "all module list here: http://cvs.fedoraproject.org/viewcvs/rpms/"
+    echo "ref https://fedoraproject.org/wiki/UsingCvs for more info"
+    echo "Get SRPMS from http://download.fedora.redhat.com/pub/fedora/linux/core/6/i386/"
+  else
+    CVS_RSH=ssh cvs -d ":pserver:anonymous@cvs.fedoraproject.org:/cvs/pkgs" "${1}" "${2}"
+  fi
+}
+
+# User specific aliases and functions
+sodep () {
+[ -z "$1" ] && echo "sodep libxxx.so /*to find depfile of shared lib*/" && return
+readelf -a $1 | grep "NEEDED"
+#objdump -x $1 | grep "NEEDED"
+echo "ldd output:"
+ldd $1
+}
+
+vims () {
+  if [ -f Session.vim ]; then
+    vim -S Session.vim $@ ;
+  elif [ -f ~/Session.vim ]; then
+    vim -S ~/Session.vim $@ ;
+  else
+    vim $@ ;
+  fi
+}
+
+bashfunctiontest() {
+  if [ -z "$1" ] ;then
+  	echo "usage:autoftp ipaddr user pwd [help|get|dir] [args...]"
+	else
+  	echo "$1"
+	fi
+}
+
+cvsinstall () {
+  if [ `whoami` != "root" ]; then {
+    echo "Please user root run this cmd!"
+    return
+  }
+  fi
+  echo "rpm -ivh cvs-1.11.2-10.rpm"
+  groupadd cvsgroup
+  mkdir /cvsroot
+  useradd -g cvsgroup -G cvsgroup -d /home/luoqq luoqq
+  useradd -g cvsgroup -G cvsgroup -d /home/cvsroot cvsroot
+  mkdir /cvsroot/project  
+  chown cvsroot:cvsgroup /cvsroot/project  
+  chmod 2775 /cvsroot/project  
+  su cvsroot -c "cvs -d /cvsroot/project init"
+  su cvsroot -c "chmod 2775 /cvsroot/project"
+  sudo chkconfig cvs on
+  sudo service xinetd restart
+}
+
+cvsuninstall () {
+  userdel luoqq
+  userdel cvsroot
+  groupdel cvsgroup
+  sudo chkconfig cvs off
+  sudo service xinetd restart
+  rm -rf /cvsroot
+}
+
+
+shmore() {
+  LINES=""
+  while read line
+  do
+  echo "$line"
+  LINES=".$LINES"
+  if [ $LINES == "......................." ]; then
+    echo -n "--More--"
+    read < /dev/tty
+    LINES=""
+  fi
+  done
+}
+
+checkfilelist() {
+  [ -z ${1} ] && echo "checkfilelist filelist.txt" && return
+  cat "${1}" | while read line; do if ! locate "$line" >/dev/null; then echo ">>>$line";fi done
+}

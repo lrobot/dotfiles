@@ -1,0 +1,47 @@
+## this is comment
+- defaults:
+    link:
+      relink: true
+
+- clean: ['~']
+
+- link:
+    ~/.dotfiles: ''
+    ~/.aliases:                  .aliases
+    ~/.bash_profile:             .bash_profile
+    ~/.bash_prompt:              .bash_prompt
+    ~/.bashrc:                   .bashrc
+    ~/.curlrc:                   .curlrc
+    ~/.editorconfig:             .editorconfig
+    ~/.exports:                  .exports
+    ~/.extra:                     .extra
+    ~/.functions:                .functions
+    ~/.gdbinit:                  .gdbinit
+    ~/.gitattributes:            .gitattributes
+    ~/.gitconfig:                .gitconfig
+    ~/.gitignore:                .gitignore
+    ~/.gvimrc:                   .gvimrc
+    ~/.hgignore:                 .hgignore
+    ~/.hushlogin:                .hushlogin
+    ~/.inputrc:                  .inputrc
+    ~/.npmrc:                    .npmrc
+    ~/.osx:                      .osx
+    ~/.screenrc:                 .screenrc
+    ~/.tmux.conf:                .tmux.conf
+    ~/.vim:                      .vim
+    ~/.vimrc:                    .vimrc
+    ~/.wgetrc:                   .wgetrc
+    ~/bin:                       bin
+##    ~/brew.sh:                   brew.sh
+    ~/init:                      init
+    ~/.ssh:                      .ssh
+    ~/.inc_bashrc:               qqcfg/mvcfg/etc/.inc_bashrc
+    ~/.bash_lib:                 qqcfg/mvcfg/etc/.bash_lib
+    ~/Library/LaunchAgents/com.lrobot.gitbackup.plist: LaunchAgents/com.lrobot.gitbackup.plist
+    ~/Library/LaunchAgents/com.lrobot.redis.plist: LaunchAgents/com.lrobot.redis.plist
+    ~/Library/LaunchAgents/com.lrobot.mongodbstart.plist: LaunchAgents/com.lrobot.mongodbstart.plist
+    ~/.lldbinit:                 .lldbinit
+    ~/.pythonrc:                 .pythonrc
+
+- shell:
+  - [echo git submodule update --init --recursive, Installing submodules]

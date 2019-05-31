@@ -1,0 +1,29 @@
+[include]
+    path = ~/dotfiles/.gitconfig
+orphank = !gitk --all `git reflog | cut -c1-7`&
+orphanl = !git --pretty=oneline --abbrev-commit --graph --decorate `git reflog | cut -c1-7`
+orphanl = !git log --pretty=oneline --abbrev-commit --graph --decorate git reflog | cut -d " " -f 1
+[user]
+	name = lrobot
+	email = lrobot.qq@gmail.com
+[difftool "sourcetree"]
+	cmd = opendiff \"$LOCAL\" \"$REMOTE\"
+	path =
+[mergetool "sourcetree"]
+	cmd = /Volumes/MacintoshHD/apps/SourceTree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
+	trustExitCode = true
+[filter "lfs"]
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true
+[credential]
+	#https://help.github.com/articles/caching-your-github-password-in-git/#platform-all
+	#helper = osxkeychain
+	#helper = store
+	#helper = wincred
+	helper = cache --timeout=3600
+[commit]
+    # https://help.github.com/articles/signing-commits-using-gpg/
+    gpgsign = false
+

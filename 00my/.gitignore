@@ -1,0 +1,23 @@
+# Compiled Python files
+*.pyc
+
+# Folder view configuration files
+.DS_Store
+Desktop.ini
+
+# Thumbnail cache files
+._*
+Thumbs.db
+
+# Files that might appear on external disks
+.Spotlight-V100
+.Trashes
+.ssh/
+.ssh/id_rsa
+.ssh/id_rsa.pub
+.ssh/known_hosts
+/tmp/
+/.vim/.netrwhist
+/.vim/swaps/
+*.swp
+

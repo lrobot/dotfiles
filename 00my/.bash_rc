@@ -1,0 +1,134 @@
+source ~/dotfiles/.bash_rc
+
+if [ -f ~/.ssh/my_vars ] then
+  source ~/.ssh/my_vars
+fi
+
+
+export PATH="~/depot_tools:$PATH";
+test -e "${HOME}/.iterm2_shell_integration.bash" && source "${HOME}/.iterm2_shell_integration.bash"
+export NVM_DIR=~/.nvm
+[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
+alias ssh='ssh -A -o ServerAliveInterval=5'
+GIT_AUTHOR_NAME=$MY_NAME
+GIT_COMMITTER_NAME="$MY_NAME"
+git config --global user.name "$MY_NAME"
+GIT_AUTHOR_EMAIL=$MY_EMAIL
+GIT_COMMITTER_EMAIL="$MY_EMAIL"
+git config --global user.email "$MY_EMAIL"
+
+DISK_ROOT=$MY_DISK_ROOT
+
+try_path_prepend() {
+  tmp_path=$1
+  [ -d ${tmp_path}  ] && export PATH=${tmp_path}:$PATH
+}
+try_path_append() {
+  tmp_path=$1
+  [ -d ${tmp_path}  ] && export PATH=$PATH:${tmp_path}
+}
+try_DYLD_LIBRARY_PATH_prepend() {
+  tmp_path=$1
+  [ -d ${tmp_path}  ] && export DYLD_LIBRARY_PATH=${tmp_path}:$DYLD_LIBRARY_PATH
+}
+try_DYLD_LIBRARY_PATH_append() {
+  tmp_path=$1
+  [ -d ${tmp_path}  ] && export DYLD_LIBRARY_PATH=$DYLD_LIBRARY_PATH:${tmp_path}
+}
+try_source() {
+  tmp_src=$1
+  [ -f "${tmp_src}" ] && . "${tmp_src}"
+}
+
+
+
+try_path_prepend ${DISK_ROOT}/homebrew_usr_local/bin
+try_path_prepend /Applications/homebrew/bin
+try_path_prepend ${DISK_ROOT}/works/otp_outOTP-19.2.3/bin
+try_path_prepend ${DISK_ROOT}/erl16/bin
+
+try_source  ${DISK_ROOT}/wrkbox/mvcfg/etc/inc_bashrc
+try_source  ~/.inc_bashrc
+try_source  ~/venv/bin/activate
+
+
+try_path_append /opt/local/bin
+try_path_append /Users/hello/Library/Android/sdk/platform-tools
+try_path_append ${DISK_ROOT}/apps/benvium-libimobiledevice-macosx-8507dd2
+try_path_prepend ${HOME}/.node/bin
+
+try_DYLD_LIBRARY_PATH_prepend ${DISK_ROOT}/apps/benvium-libimobiledevice-macosx-8507dd2
+
+la_prepare() {
+  chmod 700 ~/dotfiles/ ~/dotfiles/LaunchAgents/ ~/dotfiles/LaunchAgents/*
+}
+
+laredis () {
+  la_prepare
+  launchctl unload ~/library/LaunchAgents/com.lrobot.redis.plist
+  launchctl load ~/library/LaunchAgents/com.lrobot.redis.plist
+  sleep 0.5
+  launchctl stop com.lrobot.redis
+  sleep 0.5
+  launchctl start com.lrobot.redis
+  sleep 0.5
+  launchctl list | grep redis
+}
+lamongo () {
+  la_prepare
+  launchctl unload ~/library/LaunchAgents/com.lrobot.mongodbstart.plist
+  launchctl load ~/library/LaunchAgents/com.lrobot.mongodbstart.plist
+  sleep 0.5
+  launchctl stop com.lrobot.mongodbstart
+  sleep 0.5
+  launchctl start com.lrobot.mongodbstart
+  sleep 0.5
+  launchctl list | grep mongodbstart
+}
+
+
+#export PYTHONSTARTUP=~/.pythonrc
+export PATH=$PATH ${DISK_ROOT}/dtools/depot_tools
+export PATH=$PATH:~/depot_tools
+export PATH=$PATH:/root/depot_tools
+alias ws='cd ${DISK_ROOT}/works'
+alias jcerun='cd /Users/hello/Documents/workspace/.metadata/.plugins/org.eclipse.wst.server.core/tmp0'
+alias wrtc='cd ${DISK_ROOT}/works/webrtc_ios_49/src'
+alias rtc='cd ${DISK_ROOT}/works/webrtc_ios_49/src/third_party/rtc'
+alias msvn='cd ${DISK_ROOT}/my/msvn'
+
+alias xcodeu7='sudo xcode-select -s ${DISK_ROOT}/apps/Xcode7.2.app/Contents/Developer'
+alias xcodeu='sudo xcode-select -s ${DISK_ROOT}/apps/Xcode.app/Contents/Developer'
+alias useproxylocal='export ALL_PROXY=socks5://127.0.0.1:1080'
+alias useproxynone='export ALL_PROXY='
+alias sshsocks='ssh -A -o ServerAliveInterval=5 -D 127.0.0.1:1080'
+alias rtclibrsync_ios='rsync -av ${DISK_ROOT}/works/webrtc_ios_49/src/out_ios_libs/fat/ ${DISK_ROOT}/works/ULUC_Enterprise_ios//ULUC/SDK/grrtcapi.lib/'
+alias ctags='ctags --recurse=yes'
+alias fabdo='fab --set=use_ssh_config=1 -f ~/dotfiles/fabfile.py'
+alias fabdoyz='fabdo -H yz-stage,yz-db,yz-web,yz-web2,yz-comm,yz-comm2'
+alias rejabberd='rsync -avF ${DISK_ROOT}/works/lab/ejabberd/src/ cloudali-ucstage:/data/dev/lab/ejabberd/src/ && ssh cloudali-ucstage "make -C /data/dev/lab/ejabberd install && /data/dev/lab/ejabberd_out/sbin/ejabberdctl live"'
+
+#alias jmeterserver_centos=echo 'yum install -y java-1.8.0-openjdk && mkdir -p /data/jmeter && cd /data/jmeter JMETER=apache-jmeter-3.1 && ( [ -d ${JMETER} ] || ( [ -f ${JMETER} ]||wget http://apache.claz.org/jmeter/binaries/${JMETER}.tgz ) && tar xzvf ${JMETER}.tgz ) && pkill -f "java.*JMeter" && nohup ./bin/jmeter-server &'
+alias idevicesyslogqq='idevicesyslog -u 7ca4d2933dc8b5d643f823e8fa3d4fb8a9ea676c'
+alias grepnoios='grep -v  " dataaccessd\| kernel\| CommCenter\| locationd\| itunesstored\| coreduetd\| symptomsd\| SpringBoard\| apsd\| mDNSResponder\| parsecd\| backboardd\| MobileSMS\| assistant_service\| calaccessd\| assistantd\| syncdefaultsd\| awdd\| mediaserverd\| gamed\| searchd\| accountsd\|iPhone tccd\|iPhone swcd\| QCall\| pasted"'
+alias composer="php /usr/local/bin/composer.phar"
+
+
+alias netrtccp='cp -a ${DISK_ROOT}/works/rtc_ios_sdk/thirdparty/netrtc.ios ${DISK_ROOT}/works/ULUC_Enterprise_ios/ULUC/SDK/'
+
+alias vim='vim -p'
+
+
+
+
+runssh(){ remote=$1 file=$2; tar czf - $file | ssh ${remote} 'D=`mktemp -d`; tar xzf - -C $D; $D/'${file} ; }
+
+
+export LDFLAGS=""
+export CFLAGS=""
+export CPPFLAGS=$CFLAGS
+export HISTCONTROL=ignorespace
+#git daemon --export-all --enable=receive-pack --enable=upload-archive --detach --base-path=${DISK_ROOT}/repos/
+
+
+
