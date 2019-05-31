@@ -7,7 +7,7 @@
 	#https://stackoverflow.com/questions/21552157/git-alias-to-chain-add-commit-pull-push
 	commitall = "!func(){ set -x; git add . && git commit -aqm \""${1}\"" ; git pull -q --no-progress && git push -q; }; func"
 	ca = "!func(){ set -x; git add . && git commit -aqm \""${1}\"" ; git pull -q --no-progress && git push -q; }; func"
-	mybackup = "!func(){ set -x; MYNOTES=/file_not_exist; [ -f /d/my_notes ] && MYNOTES=/d/my_notes ; [ -f ~/my_notes ] && MYNOTES=~/my_notes; cd ${MYNOTES} && git ca m; cd ~/dotfiles && git ca m; }; func"
+	mybackup = "!func(){ set -x; MYNOTES=/file_not_exist; [ -d /d/my_notes ] && MYNOTES=/d/my_notes ; [ -d ~/my_notes ] && MYNOTES=~/my_notes; cd ${MYNOTES} && git ca m; cd ~/dotfiles && git ca m; }; func"
 [user]
 	name = lrobot
 	email = lrobot.qq@gmail.com
