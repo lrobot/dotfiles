@@ -21,3 +21,11 @@ Thumbs.db
 /.vim/swaps/
 *.swp
 
+*~
+.DS_Store
+.ctrlp
+ejabberd.app.src
+dump.rdb
+/tags
+.idea/
+

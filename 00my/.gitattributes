@@ -1,0 +1,15 @@
+# Automatically normalize line endings for all text-based files
+#* text=auto
+# Disabled because of https://github.com/mathiasbynens/dotfiles/issues/149 :(
+.gitattributes text eol=lf
+.gitconfig text eol=lf
+.vimrc text eol=lf
+.bash_profile text eol=lf
+*.sh text eol=lf
+.extra text eol=lf
+install text eol=lf
+.ssh/config text eol=lf
+
+
+
+
