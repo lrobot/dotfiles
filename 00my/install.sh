@@ -27,7 +27,6 @@ create_symlink () {
 
 cd ~
 create_symlink .vim dotfiles/.vim
-create_symlink vimfiles dotfiles/.vim
 create_symlink .bash_prompt dotfiles/.bash_prompt
 create_symlink .curlrc dotfiles/.curlrc
 create_symlink .editorconfig dotfiles/.editorconfig
@@ -48,7 +47,6 @@ create_symlink .bash_profile dotfiles/00my/.bash_profile
 create_symlink .gitconfig dotfiles/00my/.gitconfig
 create_symlink .gitignore dotfiles/00my/.gitignore
 create_symlink .gitattributes dotfiles/00my/.gitattributes
-create_symlink _vimrc dotfiles/00my/.vimrc
 create_symlink .vimrc dotfiles/00my/.vimrc
 create_symlink .gvimrc dotfiles/00my/.gvimrc
 
