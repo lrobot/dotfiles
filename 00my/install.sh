@@ -52,7 +52,6 @@ create_symlink _vimrc dotfiles/00my/.vimrc
 create_symlink .vimrc dotfiles/00my/.vimrc
 create_symlink .gvimrc dotfiles/00my/.gvimrc
 
-create_symlink bash_lib dotfiles/00my/bash_lib
 
 create_symlink .ssh ~/my_notes/00mycfg/.ssh
 #https://medium.com/@tahteche/how-git-treats-changes-in-file-permissions-f71874ca239d

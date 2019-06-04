@@ -6,7 +6,7 @@ else
   echo set my name as "noname"
   export MY_NAME=noname
   export MY_EMAIL=noname@gmail.com
-  export MY_DISK_ROOT=/not_this_disk
+  export MY_DISK_ROOT=/no_this_disk
 fi
 
 export PATH="~/depot_tools:$PATH";
@@ -46,20 +46,13 @@ try_source() {
 
 
 
-try_path_prepend ${DISK_ROOT}/homebrew_usr_local/bin
-try_path_prepend /Applications/homebrew/bin
 try_path_prepend ${DISK_ROOT}/works/otp_outOTP-19.2.3/bin
 try_path_prepend ${DISK_ROOT}/erl16/bin
 
-try_source  ${DISK_ROOT}/wrkbox/mvcfg/etc/inc_bashrc
-try_source  ~/.inc_bashrc
-try_source  ~/venv/bin/activate
 
 
-try_path_append /opt/local/bin
-try_path_append /Users/hello/Library/Android/sdk/platform-tools
-try_path_append ${DISK_ROOT}/apps/benvium-libimobiledevice-macosx-8507dd2
-try_path_prepend ${HOME}/.node/bin
+try_path_append ~/Library/Android/sdk/platform-tools
+try_path_prepend ~/.node/bin
 
 try_DYLD_LIBRARY_PATH_prepend ${DISK_ROOT}/apps/benvium-libimobiledevice-macosx-8507dd2
 
@@ -92,9 +85,7 @@ lamongo () {
 
 
 #export PYTHONSTARTUP=~/.pythonrc
-export PATH=$PATH:${DISK_ROOT}/dtools/depot_tools
 export PATH=$PATH:~/depot_tools
-export PATH=$PATH:/root/depot_tools
 alias ws='cd ${DISK_ROOT}/works'
 alias jcerun='cd /Users/hello/Documents/workspace/.metadata/.plugins/org.eclipse.wst.server.core/tmp0'
 alias wrtc='cd ${DISK_ROOT}/works/webrtc_ios_49/src'
