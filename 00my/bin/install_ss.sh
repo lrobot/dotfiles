@@ -7,6 +7,7 @@ deb http://httpredir.debian.org/debian jessie-backports main
 EOF
 apt-get update
 apt-get -t jessie-backports -y install shadowsocks-libev
+apt-get -y install shadowsocks-libev
 
 cat > /etc/shadowsocks-libev/config.json <<EOF
 {
@@ -15,7 +16,7 @@ cat > /etc/shadowsocks-libev/config.json <<EOF
     "local_port":1080,
     "password":"${SS_PASSWD}",
     "timeout":60,
-    "method":null
+    "method":"aes-256-cfb"
 }
 EOF
 systemctl disable apache2
