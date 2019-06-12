@@ -66,3 +66,4 @@ if has("autocmd")
   autocmd VimEnter * if exists(":NERDTree") | exe "map <F4> ;NERDTreeToggle\<CR>" | endif
 endif
 let g:ycm_global_ycm_extra_conf = "~/.vim/.ycm_extra_conf.py"
+set nomodeline
