@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-cd "$(dirname "${BASH_SOURCE}")" 
+cd "$(dirname "${BASH_SOURCE}")"
 cd ~
 pwd
 set -x
@@ -22,6 +22,13 @@ create_symlink () {
     rm -f $1
     ln -s $2 $1
 }
+create_dirsymlink () {
+    cd ~
+    rm -f $1/*
+    rmdir $1
+    ln -s $2 $1
+}
+
 
 
 
@@ -51,7 +58,7 @@ create_symlink .vimrc dotfiles/00my/.vimrc
 create_symlink .gvimrc dotfiles/00my/.gvimrc
 
 
-create_symlink .ssh ~/my_notes/00mycfg/.ssh
+create_dirsymlink .ssh ~/my_notes/00mycfg/.ssh
 #https://medium.com/@tahteche/how-git-treats-changes-in-file-permissions-f71874ca239d
 # file permission user+group+other, because git not record group+other permission, need chmod 600 .ssh/config
 chmod 600 ~/.ssh/*
