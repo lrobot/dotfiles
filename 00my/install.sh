@@ -47,6 +47,7 @@ create_symlink .inputrc dotfiles/.inputrc
 
 create_dirsymlink .zsh dotfiles/00my/.zsh
 create_symlink .zshrc dotfiles/00my/.zshrc
+create_dirsymlink .inputrc dotfiles/00my/.inputrc
 create_symlink .npmrc dotfiles/00my/.npmrc
 create_symlink .pythonrc dotfiles/00my/.pythonrc
 create_symlink .lldbinit dotfiles/00my/.lldbinit
