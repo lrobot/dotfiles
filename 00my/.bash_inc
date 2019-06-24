@@ -53,6 +53,8 @@ try_path_prepend ~/.node/bin
 if [ -d /Volumes/MacintoshHD ] ; then
 try_path_prepend /Volumes/MacintoshHD/works/otp_outOTP-19.2.3/bin
 try_path_prepend /Volumes/MacintoshHD/erl16/bin
+try_path_prepend /Volumes/MacintoshHD/devtools/depot_tools
+
 try_DYLD_LIBRARY_PATH_prepend /Volumes/MacintoshHD/apps/benvium-libimobiledevice-macosx-8507dd2
 alias ws='cd /Volumes/MacintoshHD'
 alias xcodeu7='sudo xcode-select -s /Volumes/MacintoshHD/apps/Xcode7.2.app/Contents/Developer'
@@ -107,8 +109,7 @@ alias idevicesyslogqq='idevicesyslog -u 7ca4d2933dc8b5d643f823e8fa3d4fb8a9ea676c
 alias grepnoios='grep -v  " dataaccessd\| kernel\| CommCenter\| locationd\| itunesstored\| coreduetd\| symptomsd\| SpringBoard\| apsd\| mDNSResponder\| parsecd\| backboardd\| MobileSMS\| assistant_service\| calaccessd\| assistantd\| syncdefaultsd\| awdd\| mediaserverd\| gamed\| searchd\| accountsd\|iPhone tccd\|iPhone swcd\| QCall\| pasted"'
 alias composer="php /usr/local/bin/composer.phar"
 
-alias vim='vim -p'
-
+alias vi='vim -u NONE' 
 
 
 runssh(){ remote=$1 file=$2; tar czf - $file | ssh ${remote} 'D=`mktemp -d`; tar xzf - -C $D; $D/'${file} ; }
