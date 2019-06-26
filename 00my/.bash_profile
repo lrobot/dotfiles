@@ -1,4 +1,3 @@
-
 [ -d /Volumes/MacintoshHD/homebrew/bin ] && export PATH=/Volumes/MacintoshHD/homebrew/bin:$PATH
 
 source ~/dotfiles/.bash_profile

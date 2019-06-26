@@ -24,8 +24,7 @@ create_symlink () {
 }
 create_dirsymlink () {
     cd ~
-    rm -f $1/*
-    rmdir $1
+    rm -f $1
     ln -s $2 $1
 }
 
@@ -33,6 +32,7 @@ create_dirsymlink () {
 
 
 cd ~
+
 create_symlink .vim dotfiles/.vim
 create_symlink .bash_prompt dotfiles/.bash_prompt
 create_symlink .curlrc dotfiles/.curlrc
@@ -45,7 +45,9 @@ create_symlink .hushlogin dotfiles/.hushlogin
 create_symlink .inputrc dotfiles/.inputrc
 
 
-
+create_dirsymlink .zsh dotfiles/00my/.zsh
+create_symlink .zshrc dotfiles/00my/.zshrc
+create_dirsymlink .inputrc dotfiles/00my/.inputrc
 create_symlink .npmrc dotfiles/00my/.npmrc
 create_symlink .pythonrc dotfiles/00my/.pythonrc
 create_symlink .lldbinit dotfiles/00my/.lldbinit
