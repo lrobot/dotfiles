@@ -26,9 +26,13 @@ create_dirsymlink () {
     cd ~
     if [[ x$1 == x/* ]] ; then
         echo bad usage;
-    else
-        rm -f $1 && rm -rf $1
+        return
+    fi
+    if [ -d $2 ]; then
+        rm -f $1 || rm -rf $1
         ln -s $2 $1
+    else
+        echo not target dir
     fi
 }
 
@@ -61,7 +65,6 @@ create_symlink .gitignore dotfiles/00my/.gitignore
 create_symlink .gitattributes dotfiles/00my/.gitattributes
 create_symlink .vimrc dotfiles/00my/.vimrc
 create_symlink .gvimrc dotfiles/00my/.gvimrc
-
 
 create_dirsymlink .ssh ~/my_notes/00mycfg/.ssh
 #https://medium.com/@tahteche/how-git-treats-changes-in-file-permissions-f71874ca239d
