@@ -24,16 +24,19 @@ create_symlink () {
 }
 create_dirsymlink () {
     cd ~
-    rm -f $1
-    ln -s $2 $1
+    if [[ x$1 == x/* ]] ; then
+        echo bad usage;
+    else
+        rm -f $1 && rm -rf $1
+        ln -s $2 $1
+    fi
 }
-
 
 
 
 cd ~
 
-create_symlink .vim dotfiles/.vim
+create_dirsymlink .vim dotfiles/.vim
 create_symlink .bash_prompt dotfiles/.bash_prompt
 create_symlink .curlrc dotfiles/.curlrc
 create_symlink .editorconfig dotfiles/.editorconfig
