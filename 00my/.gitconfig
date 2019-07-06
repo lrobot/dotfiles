@@ -8,6 +8,8 @@
 	commitall = "!func(){ set -x; git add . && git commit -aqm \""${1}\"" ; git pull -q --no-progress && git push -q; }; func"
 	ca = "!func(){ set -x; git add . && git commit -aqm \""${1}\"" ; git pull -q --no-progress && git push -q; }; func"
 	mybackup = "!func(){ set -x; MYNOTES=/file_not_exist; [ -d /d/my_notes ] && MYNOTES=/d/my_notes ; [ -d ~/my_notes ] && MYNOTES=~/my_notes; cd ${MYNOTES} && git ca m; cd ~/dotfiles && git ca m; }; func"
+	mirror = "!func(){ TEMPID=${BASHPID}_${RANDOM} ; echo $TEMPID ; git clone --bare $1 ${TEMPID}.git ;  cd ${TEMPID}.git ; git push --mirror $2 ; rm -rf ${TEMPID}.git ; }; func"
+	echo = "!func(){ echo $1; echo $*; }; func"
 [user]
 	name = lrobot
 	email = lrobot.qq@gmail.com

@@ -53,4 +53,6 @@ systemctl stop apache2
 systemctl enable shadowsocks-libev
 systemctl start shadowsocks-libev
 systemctl status shadowsocks-libev
+systemctl disable systemd-resolved
+echo "make sure dns work by fix /etc/resolv.conf"
 
