@@ -1,13 +1,5 @@
 
-if [ -f ~/.ssh/my_vars ]; then
-  source ~/.ssh/my_vars
-else
-  echo "no ~/.ssh/my_vars"
-  echo set my name as "noname"
-  export MY_NAME=noname
-  export MY_EMAIL=noname@gmail.com
 
-fi
 
 
 
@@ -15,12 +7,21 @@ test -e "${HOME}/.iterm2_shell_integration.bash" && source "${HOME}/.iterm2_shel
 export NVM_DIR=~/.nvm
 [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
 
-GIT_AUTHOR_NAME=$MY_NAME
-GIT_COMMITTER_NAME="$MY_NAME"
-git config --global user.name "$MY_NAME"
-GIT_AUTHOR_EMAIL=$MY_EMAIL
-GIT_COMMITTER_EMAIL="$MY_EMAIL"
-git config --global user.email "$MY_EMAIL"
+
+#if [ -f ~/.ssh/my_vars ]; then
+#  source ~/.ssh/my_vars
+#else
+#  echo "no ~/.ssh/my_vars"
+#  echo set my name as "noname"
+#  export MY_NAME=noname
+#  export MY_EMAIL=noname@gmail.com
+#fi
+#GIT_AUTHOR_NAME=$MY_NAME
+#GIT_COMMITTER_NAME="$MY_NAME"
+#git config --global user.name "$MY_NAME"
+#GIT_AUTHOR_EMAIL=$MY_EMAIL
+#GIT_COMMITTER_EMAIL="$MY_EMAIL"
+#git config --global user.email "$MY_EMAIL"
 
 
 try_path_prepend() {
@@ -107,7 +108,8 @@ alias socksenble_all='export ALL_PROXY=socks5://127.0.0.1:1080'
 alias socksdisable_all='export ALL_PROXY='
 alias socksenble_alls='export {HTTP,HTTPS,FTP,RSYNC,ALL}_PROXY=socks5://127.0.0.1:1080'
 alias socksdisable_alls='export {HTTP,HTTPS,FTP,RSYNC,ALL}_PROXY='
-alias ctags='ctags --recurse=yes'
+alias ctagsdo='ctags --recurse=yes'
+alias cscopedo='cscope -bqR'
 alias fabdo='fab --set=use_ssh_config=1 -f ~/dotfiles/fabfile.py'
 alias fabdoyz='fabdo -H yz-stage,yz-db,yz-web,yz-web2,yz-comm,yz-comm2'
 
