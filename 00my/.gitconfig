@@ -43,6 +43,13 @@
 
 [color]
 	ui = true
-[core]
-	autocrlf = true
+#about core.autocrlf ref https://help.github.com/en/articles/configuring-git-to-handle-line-endings	
+
+# linux& mac  git config --global core.autocrl input
+#[core]
+#	autocrlf = input
+
+# windows git config --global core.autocrl true
+#[core]
+#	autocrlf = true
 
