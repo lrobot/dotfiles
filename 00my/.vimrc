@@ -60,6 +60,9 @@ map <C-j> :cnext<CR>
 map <C-h> :lprevious<CR>
 map <C-l> :lnext<CR>
 map <C-s> :w!<CR>
+"https://stackoverflow.com/questions/676600/vim-search-and-replace-selected-text
+vnoremap <C-r> "hy:%s/<C-r>h//gc<left><left><left>
+
 
 " Automatic commands
 if has("autocmd")
@@ -67,3 +70,5 @@ if has("autocmd")
 endif
 let g:ycm_global_ycm_extra_conf = "~/.vim/.ycm_extra_conf.py"
 set nomodeline
+source ~/dotfiles/00my/cscope_maps.vim
+

@@ -1,4 +1,3 @@
-
 [ -d /Volumes/MacintoshHD/homebrew/bin ] && export PATH=/Volumes/MacintoshHD/homebrew/bin:$PATH
 [ -d /usr/local/Homebrew/bin ] && export PATH=/usr/local/Homebrew/bin:$PATH
 [ -d /Users/huangle/tool/depot_tools ] && export PATH=/Users/huangle/tool/depot_tools:$PATH
