@@ -72,3 +72,12 @@ let g:ycm_global_ycm_extra_conf = "~/.vim/.ycm_extra_conf.py"
 set nomodeline
 source ~/dotfiles/00my/cscope_maps.vim
 
+" -- .c .cpp .h file indent --
+autocmd BufEnter *.[ch],*.cpp,*.cc,*.cxx exec ":call CFileIndent()"
+func CFileIndent()
+        set cindent
+        set tabstop=2
+        set softtabstop=2
+        set expandtab
+        set shiftwidth=2
+endfunc
