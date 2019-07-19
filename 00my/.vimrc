@@ -30,8 +30,8 @@ set nofoldenable
 let g:ackpreview = 1
 set history=1000
 set expandtab
-set shiftwidth=4
-set tabstop=4
+set shiftwidth=2
+set tabstop=2
 set wildmenu
 set wildmode=longest,list,full
 "helptags ALL  "genereate help tags for all runtimepath plugin
@@ -72,3 +72,24 @@ let g:ycm_global_ycm_extra_conf = "~/.vim/.ycm_extra_conf.py"
 set nomodeline
 source ~/dotfiles/00my/cscope_maps.vim
 
+" -- .c .cpp .h file indent --
+autocmd BufEnter *.[ch],*.cpp,*.cc,*.cxx exec ":call CFileIndent()"
+func CFileIndent()
+        set cindent
+        set tabstop=2
+        set softtabstop=2
+        set expandtab
+        set shiftwidth=2
+endfunc
+augroup autoformat_settings
+  autocmd FileType bzl AutoFormatBuffer buildifier
+  autocmd FileType c,cpp,proto,javascript AutoFormatBuffer clang-format
+  autocmd FileType dart AutoFormatBuffer dartfmt
+  autocmd FileType go AutoFormatBuffer gofmt
+  autocmd FileType gn AutoFormatBuffer gn
+  autocmd FileType html,css,sass,scss,less,json AutoFormatBuffer js-beautify
+  autocmd FileType java AutoFormatBuffer google-java-format
+  autocmd FileType python AutoFormatBuffer yapf
+  " Alternative: autocmd FileType python AutoFormatBuffer autopep8
+  autocmd FileType vue AutoFormatBuffer prettier
+augroup END
