@@ -1,12 +1,8 @@
 
 
-~/dotfiles/install.sh
+#~/dotfiles/install.sh
+
 ~/dotfiles/00my/install.sh
-~/dotfiles/00my/git-sync-deps
-(cd ~/dotfiles/.vim/pack/myqpack/start/YouCompleteMe/ && {
-   git submodule update --init --recursive
-   ./install.py
-})
 
 
 
