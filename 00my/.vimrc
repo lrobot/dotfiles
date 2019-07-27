@@ -71,7 +71,6 @@ if has("autocmd")
 endif
 let g:ycm_global_ycm_extra_conf = "~/.vim/.ycm_extra_conf.py"
 set nomodeline
-source ~/dotfiles/00my/cscope_maps.vim
 
 " -- .c .cpp .h file indent --
 autocmd BufEnter *.[ch],*.cpp,*.cc,*.cxx exec ":call CFileIndent()"
