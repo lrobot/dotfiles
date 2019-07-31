@@ -111,6 +111,7 @@ alias socksenble_alls='export {HTTP,HTTPS,FTP,RSYNC,ALL}_PROXY=socks5://127.0.0.
 alias socksdisable_alls='export {HTTP,HTTPS,FTP,RSYNC,ALL}_PROXY='
 alias ctagsdo='ctags --recurse=yes'
 alias cscopedo='cscope -bqR'
+alias tagsdo='ctagsdo; cscopedo; gtags'
 alias fabdo='fab --set=use_ssh_config=1 -f ~/dotfiles/fabfile.py'
 alias fabdoyz='fabdo -H yz-stage,yz-db,yz-web,yz-web2,yz-comm,yz-comm2'
 

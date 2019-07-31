@@ -72,3 +72,13 @@ create_dirsymlink .ssh ~/my_notes/00mycfg/.ssh
 chmod 600 ~/.ssh/*
 
 
+./git-sync-deps
+(cd ../.vim/pack/myqpack/start/python-mode/ && {
+   git submodule update --init --recursive
+})
+apt install python2.7-dev || true
+(cd ../.vim/pack/myqpack/start/YouCompleteMe/ && {
+   git submodule update --init --recursive
+   ./install.py
+})
+
