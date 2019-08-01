@@ -22,7 +22,8 @@ deps = {
   ".vim/pack/myqpack/start/vim-gitgutter":"https://github.com/airblade/vim-gitgutter.git@master",
   ".vim/pack/myqpack/start/vim-javascript":"https://github.com/pangloss/vim-javascript.git@master",
   ".vim/pack/myqpack/start/vim-vinegar":"https://github.com/tpope/vim-vinegar.git@master",
-  ".vim/pack/myqpack/start/ag.vim":"https://github.com/rking/ag.vim.git",
+  ".vim/pack/myqpack/start/ag.vim":"https://github.com/rking/ag.vim.git@master",
+  ".vim/pack/myqpack/start/vim-clang.vim":"https://github.com/justmao945/vim-clang.git@master",
   "../src": {
     "url": "https://chromium.googlesource.com/chromium/src.git@31223069ea1d045bc5b87ec72e2673e07d1a95f7",
     "condition": "checkout_chromium",
