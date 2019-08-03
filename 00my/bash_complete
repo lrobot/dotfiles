@@ -3,7 +3,7 @@ shopt -u hostcomplete
 
 bash_compelte_dir="$( cd -P "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 
-ssh_target_file=`get_keycfg_dir`/known_ssh_targets
+ssh_target_file=~.ssh/known_ssh_targets
 _dossh() 
 {
     local cur prev opts

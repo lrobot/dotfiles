@@ -1,5 +1,5 @@
 #
-## example: ssh qhmb YOUR_USERNAME=user1 YOUR_PASSWD=123456 YOUR_DOMAIN=www.qq.com YOUR_EMAIL=qq@qq.com 'bash -s' < install_ocserv.sh
+## example: ssh qhmb YOUR_USERNAME=gogoye YOUR_PASSWD=gogopass YOUR_DOMAIN=wx.lrobot.tk YOUR_EMAIL=lrobot.qq@gmail.com 'bash -s' < install_ocserv.sh
 set -x
 echo YOUR_DOMAIN=${YOUR_DOMAIN}
 apt-get install -y software-properties-common

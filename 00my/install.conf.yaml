@@ -35,8 +35,6 @@
 ##    ~/brew.sh:                   brew.sh
     ~/init:                      init
     ~/.ssh:                      .ssh
-    ~/.inc_bashrc:               qqcfg/mvcfg/etc/.inc_bashrc
-    ~/.bash_lib:                 qqcfg/mvcfg/etc/.bash_lib
     ~/Library/LaunchAgents/com.lrobot.gitbackup.plist: LaunchAgents/com.lrobot.gitbackup.plist
     ~/Library/LaunchAgents/com.lrobot.redis.plist: LaunchAgents/com.lrobot.redis.plist
     ~/Library/LaunchAgents/com.lrobot.mongodbstart.plist: LaunchAgents/com.lrobot.mongodbstart.plist
