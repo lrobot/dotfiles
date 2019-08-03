@@ -1,4 +1,5 @@
 source ~/dotfiles/.vimrc
+
 " Use the Soarized Dark theme
 set background=dark
 colorscheme solarized
@@ -30,8 +31,8 @@ set nofoldenable
 let g:ackpreview = 1
 set history=1000
 set expandtab
-set shiftwidth=4
-set tabstop=4
+set shiftwidth=2
+set tabstop=2
 set wildmenu
 set wildmode=longest,list,full
 "helptags ALL  "genereate help tags for all runtimepath plugin
@@ -70,5 +71,42 @@ if has("autocmd")
 endif
 let g:ycm_global_ycm_extra_conf = "~/.vim/.ycm_extra_conf.py"
 set nomodeline
-source ~/dotfiles/00my/cscope_maps.vim
+
+" -- .c .cpp .h file indent --
+autocmd BufEnter *.[ch],*.cpp,*.cc,*.cxx exec ":call CFileIndent()"
+func! CFileIndent()
+        set cindent
+        set tabstop=2
+        set softtabstop=2
+        set expandtab
+        set shiftwidth=2
+endfunc
+augroup autoformat_settings
+  autocmd FileType bzl AutoFormatBuffer buildifier
+  autocmd FileType c,cpp,proto,javascript AutoFormatBuffer clang-format
+  autocmd FileType dart AutoFormatBuffer dartfmt
+  autocmd FileType go AutoFormatBuffer gofmt
+  autocmd FileType gn AutoFormatBuffer gn
+  autocmd FileType html,css,sass,scss,less,json AutoFormatBuffer js-beautify
+  autocmd FileType java AutoFormatBuffer google-java-format
+  autocmd FileType python AutoFormatBuffer yapf
+  " Alternative: autocmd FileType python AutoFormatBuffer autopep8
+  autocmd FileType vue AutoFormatBuffer prettier
+augroup END
+
+map W :wa<CR>
+map! <C-W> <Esc>:wa<CR>a
+
+let g:clang_compilation_database = './out'
+let g:clang_check_syntax_auto = 1
+let g:clang_format_style = 'Chromium'
+let g:clang_format_exec = 'clang-format'
+"let g:clang_format_auto = 1
+
+autocmd BufReadPost * call glaive#Install()
+autocmd BufReadPost * Glaive codefmt clang_format_style='Mozilla'
+autocmd BufReadPost * Glaive codefmt clang_format_style='Chromium'
+
+set csprg=gtags-cscope
+"cs add GTAGS
 

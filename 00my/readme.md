@@ -1,6 +1,9 @@
 
 
-~/dotfiles/install.sh
+#~/dotfiles/install.sh
+
+~/dotfiles/00my/install.sh
+
 
 
 
@@ -14,3 +17,4 @@
 
 #test autobackup
 #launchctl load ~/Library/LaunchAgents/com.lrobot.gitbackup.plist
+
