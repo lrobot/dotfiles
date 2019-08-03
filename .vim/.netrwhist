@@ -1,0 +1,9 @@
+let g:netrw_dirhistmax  =10
+let g:netrw_dirhist_cnt =7
+let g:netrw_dirhist_1='D:\wk\jdwebrtcmaster\src\jdrtc\src/speech_codec/speex'
+let g:netrw_dirhist_2='D:\wk\jdwebrtcmaster\src\jdrtc\src/speech_codec/speex/libspeex'
+let g:netrw_dirhist_3='D:/wk/jdwebrtcmaster/src/jdrtc/src/speech_codec/speex'
+let g:netrw_dirhist_4='D:/wk/jdwebrtcmaster/src/jdrtc/src/speech_codec'
+let g:netrw_dirhist_5='D:/wk/jdwebrtcmaster/src/jdrtc/src'
+let g:netrw_dirhist_6='D:/wk/jdwebrtcmaster/src/jdrtc/src/msg_protocol'
+let g:netrw_dirhist_7='D:\wk\jdwebrtcmaster\src\jdrtc\src\videomedia'
