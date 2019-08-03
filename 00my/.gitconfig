@@ -14,8 +14,8 @@
 	mirror = "!func(){ TEMPID=${BASHPID}_${RANDOM} ; echo $TEMPID ; git clone --bare $1 ${TEMPID}.git ; ( cd ${TEMPID}.git ; git push --mirror $2 ; ) ; rm -rf ${TEMPID}.git ; }; func"
 	echo = "!func(){ echo $1; echo $*; }; func"
 [user]
-	name = lrobot
-	email = lrobot.qq@gmail.com
+	name = noname
+	email = noname@gmail.com
 [difftool "sourcetree"]
 	cmd = opendiff \"$LOCAL\" \"$REMOTE\"
 	path =
