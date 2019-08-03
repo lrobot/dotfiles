@@ -12,7 +12,7 @@
 	#git mybackup
 	mybackup = "!func(){ set -x; git cd2ca ~/dotfiles || true; git cd2ca /d/my_notes || true ; git cd2ca ~/my_notes || true ; }; func"
 	#git mirror https://chromium.googlesource.com/chromium/src/base git@code.aliyun.com:chromium/src.base.git
-	mysync = "!func(){ set -x; git mybackup; ssh -A qvlaip 'git mybackup' && ssh -A qvparisip 'git mybackup' && ssh -A qalicdip 'git mybackup' ; }; func"
+	mysync = "!func(){ set -x; git mybackup; ssh -A qvlaip 'git mybackup' && ssh -A qvparisip 'git mybackup' && ssh -A qalicdip 'git mybackup' ; git mybackup; }; func"
 	mirror = "!func(){ set -x; MD5=md5sum; [ -f /sbin/md5 ] && MD5=/sbin/md5 ; TEMPID=${BASHPID}_${RANDOM}_`head /dev/urandom |${MD5}|awk '{ print $1 }'`; \
 	echo $TEMPID ; git clone --bare $1 ${TEMPID}.git ; ( cd ${TEMPID}.git ; git push --mirror $2 ; ) ; rm -rf ${TEMPID}.git ; }; func"
 	echo = "!echofunc(){ echo $1; echo $*; echo $@; echo $# ; }; echofunc"
