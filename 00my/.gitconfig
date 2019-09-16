@@ -8,18 +8,20 @@
 	commitall = "!func(){ set -x; git add . && git commit -aqm \""${1}\"" ; git pull -q --no-progress && git push -q; }; func"
 	#git ca #is git add commit pull push
 	ca =        "!func(){ set -x; git add . && git commit -aqm \""${1}\"" ; git pull -q --no-progress && git push -q; }; func"
+	cd2ca = "!func(){ set -x; [ -d \""${1}\"" ] && cd \""${1}\"" && git ca m; }; func"
 	#git mybackup
-	mybackup = "!func(){ set -x; cd ~/dotfiles && git ca m; MYNOTES=/file_not_exist; [ -d /d/my_notes ] && MYNOTES=/d/my_notes ; [ -d ~/my_notes ] && MYNOTES=~/my_notes; cd ${MYNOTES} && git ca m; }; func"
+	mybackup = "!func(){ set -x; git cd2ca ~/dotfiles || true; git cd2ca /d/my_notes || true ; git cd2ca ~/my_notes || true ; }; func"
 	#git mirror https://chromium.googlesource.com/chromium/src/base git@code.aliyun.com:chromium/src.base.git
-	mirror = "!func(){ MD5=md5sum; [ -f /sbin/md5 ] && MD5=/sbin/md5 ; TEMPID=${BASHPID}_${RANDOM}_`head /dev/urandom |${MD5}`; \
+	mysync = "!func(){ set -x; git mybackup; ssh -A qvlaip 'git mybackup' && ssh -A qvparisip 'git mybackup' && ssh -A qalicdip 'git mybackup' ; git mybackup; }; func"
+	mirror = "!func(){ set -x; MD5=md5sum; [ -f /sbin/md5 ] && MD5=/sbin/md5 ; TEMPID=${BASHPID}_${RANDOM}_`head /dev/urandom |${MD5}|awk '{ print $1 }'`; \
 	echo $TEMPID ; git clone --bare $1 ${TEMPID}.git ; ( cd ${TEMPID}.git ; git push --mirror $2 ; ) ; rm -rf ${TEMPID}.git ; }; func"
 	echo = "!echofunc(){ echo $1; echo $*; echo $@; echo $# ; }; echofunc"
 	shset = "!echofunc(){ MD5=md5sum; [ -f /sbin/md5 ] && MD5=/sbin/md5 ; TEMPID=${BASHPID}_${RANDOM}_`head /dev/urandom |${MD5}`; \
 	echo $TEMPID ;\
 	}; echofunc"
 [user]
-	name = lrobot
-	email = lrobot.qq@gmail.com
+	name = noname
+	email = noname@gmail.com
 [difftool "sourcetree"]
 	cmd = opendiff \"$LOCAL\" \"$REMOTE\"
 	path =
@@ -43,7 +45,7 @@
 
 [color]
 	ui = true
-#about core.autocrlf ref https://help.github.com/en/articles/configuring-git-to-handle-line-endings	
+#about core.autocrlf ref https://help.github.com/en/articles/configuring-git-to-handle-line-endings
 
 # linux& mac  git config --global core.autocrl input
 #[core]
@@ -55,3 +57,5 @@
 
 [core]
 	fileMode = false
+#[url "https://"]
+#	insteadOf = git://
