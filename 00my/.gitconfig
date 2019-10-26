@@ -45,7 +45,7 @@
 
 [color]
 	ui = true
-#about core.autocrlf ref https://help.github.com/en/articles/configuring-git-to-handle-line-endings	
+#about core.autocrlf ref https://help.github.com/en/articles/configuring-git-to-handle-line-endings
 
 # linux& mac  git config --global core.autocrl input
 #[core]
@@ -55,3 +55,7 @@
 #[core]
 #	autocrlf = true
 
+[core]
+	fileMode = false
+#[url "https://"]
+#	insteadOf = git://
