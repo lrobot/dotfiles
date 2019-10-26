@@ -63,12 +63,13 @@ alias xcodeu7='sudo xcode-select -s /Volumes/MacintoshHD/apps/Xcode7.2.app/Conte
 alias xcodeu='sudo xcode-select -s /Volumes/MacintoshHD/apps/Xcode.app/Contents/Developer'
 fi
 
-la_prepare() {
+
+launchctl_prepare() {
   chmod 700 ~/dotfiles/ ~/dotfiles/LaunchAgents/ ~/dotfiles/LaunchAgents/*
 }
 
-laredis () {
-  la_prepare
+launchctl_redis () {
+  launchctl_prepare
   launchctl unload ~/library/LaunchAgents/com.lrobot.redis.plist
   launchctl load ~/library/LaunchAgents/com.lrobot.redis.plist
   sleep 0.5
@@ -78,8 +79,8 @@ laredis () {
   sleep 0.5
   launchctl list | grep redis
 }
-lamongo () {
-  la_prepare
+launchctl_mongo () {
+  launchctl_prepare
   launchctl unload ~/library/LaunchAgents/com.lrobot.mongodbstart.plist
   launchctl load ~/library/LaunchAgents/com.lrobot.mongodbstart.plist
   sleep 0.5
@@ -89,6 +90,20 @@ lamongo () {
   sleep 0.5
   launchctl list | grep mongodbstart
 }
+
+gitlab_runner(){
+  launchctl_prepare
+  launchctl unload ~/library/LaunchAgents/com.lrobot.mongodbstart.plist
+  launchctl load ~/library/LaunchAgents/com.lrobot.mongodbstart.plist
+  /usr/local/bin/gitlab-runner uninstall
+  /usr/local/bin/gitlab-runner install
+  /usr/local/bin/gitlab-runner stop
+  /usr/local/bin/gitlab-runner start
+  sleep 1.5
+  /usr/local/bin/gitlab-runner status
+
+}
+
 
 
 #export PYTHONSTARTUP=~/.pythonrc

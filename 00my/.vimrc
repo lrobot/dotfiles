@@ -43,6 +43,7 @@ nmap <Leader>t :TagbarToggle<CR>
 nmap <Leader>e :NERDTreeToggle<CR>
 let g:ctrlp_use_caching = 0
 let g:ctrlp_extensions = ['tag', 'buffertag']
+let g:ctrlp_match_window='max:25'
 "let g:ctrlp_extensions = ['tag', 'buffertag', 'quickfix', 'dir', 'rtscript', 'undo', 'line', 'changes', 'mixed', 'bookmarkdir']
 if executable('ag')
 " Use Ag over Grep
