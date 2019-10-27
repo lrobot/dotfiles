@@ -27,6 +27,8 @@ brew install caskroom/cask/brew-cask
 brew install watchman
 brew install yarn
 brew install https://raw.githubusercontent.com/kadwanev/bigboybrew/master/Library/Formula/sshpass.rb
+brew install peco
+brew install mc
 npm install -g react-native-cli
 echo sudo spctl --master-disable
 # qqend

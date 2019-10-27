@@ -7,11 +7,11 @@ if [ 'MINGW64_NT' != ${uname_str:0:10} ] ; then
 [ -d /usr/local/bin ] && export PATH=/Users/hello/go/bin:$PATH
 
 
-#source ~/dotfiles/.bash_profile
+source ~/dotfiles/.bash_profile
 source ~/dotfiles/00my/bash_lib
 source ~/dotfiles/00my/bash_lib_utils
 source ~/dotfiles/00my/bash_cmdlet
-#source ~/dotfiles/00my/bash_complete
+source ~/dotfiles/00my/bash_complete
 source ~/dotfiles/00my/.bash_inc
 
 fi
