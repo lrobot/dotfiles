@@ -20,13 +20,13 @@
 	echo $TEMPID ;\
 	}; echofunc"
 [user]
-	name = noname
-	email = noname@gmail.com
+	name = cdluoqingquan
+	email = cdluoqingquan@jd.com
 [difftool "sourcetree"]
 	cmd = opendiff \"$LOCAL\" \"$REMOTE\"
 	path = 
 [mergetool "sourcetree"]
-	cmd = /Applications/SourceTree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
+	cmd = /Applications/Sourcetree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
 	trustExitCode = true
 [filter "lfs"]
 	clean = git-lfs clean -- %f
@@ -42,6 +42,7 @@
 [commit]
 	# https://help.github.com/articles/signing-commits-using-gpg/
 	gpgsign = false
+	template = /Users/cdluoqingquan/.stCommitMsg
 
 [color]
 	ui = true
@@ -57,5 +58,7 @@
 
 [core]
 	fileMode = false
+	excludesfile = /Users/cdluoqingquan/.gitignore_global
+	autocrlf = true
 #[url "https://"]
 #	insteadOf = git://
