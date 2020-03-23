@@ -5,14 +5,14 @@ brew install erlang
 brew install emacs
 brew install node
 brew install global
-brew install ctags
+brew install --HEAD universal-ctags/universal-ctags/universal-ctags
 brew install ssh-copy-id
 brew install python --with-berkeley-db4
 brew install -v --fresh automake autoconf libtool wget
 brew install git-crypt
 curl -L https://www.npmjs.com/install.sh | sh
 #brew install -v --HEAD --fresh --build-from-source libimobiledevice ideviceinstaller
-brew install bash-eompletion
+brew install bash-completion
 brew install aria2
 brew install unrar
 brew install axel
