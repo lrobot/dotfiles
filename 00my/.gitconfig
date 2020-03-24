@@ -20,11 +20,11 @@
 	echo $TEMPID ;\
 	}; echofunc"
 [user]
-	name = cdluoqingquan
-	email = cdluoqingquan@jd.com
+	name = lrobot
+	email = lrobot.qq@gmail.com
 [difftool "sourcetree"]
 	cmd = opendiff \"$LOCAL\" \"$REMOTE\"
-	path = 
+	path =
 [mergetool "sourcetree"]
 	cmd = /Applications/Sourcetree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
 	trustExitCode = true
@@ -42,7 +42,7 @@
 [commit]
 	# https://help.github.com/articles/signing-commits-using-gpg/
 	gpgsign = false
-	template = /Users/cdluoqingquan/.stCommitMsg
+	template = ~/.stCommitMsg
 
 [color]
 	ui = true
@@ -58,7 +58,7 @@
 
 [core]
 	fileMode = false
-	excludesfile = /Users/cdluoqingquan/.gitignore_global
+	excludesfile = ~/.gitignore_global
 	autocrlf = true
 #[url "https://"]
 #	insteadOf = git://
