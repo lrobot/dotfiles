@@ -52,7 +52,7 @@
 	#helper = osxkeychain
 	#helper = store
 	#helper = wincred
-	helper = cache --timeout=3600
+	helper = osxkeychain
 [commit]
 	# https://help.github.com/articles/signing-commits-using-gpg/
 	gpgsign = false
