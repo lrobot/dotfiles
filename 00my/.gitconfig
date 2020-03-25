@@ -1,5 +1,19 @@
 [include]
 	path = ~/dotfiles/.gitconfig
+[includeIf "gitdir:C:/"]
+  path = ~/dotfiles/00my/.gitconfig.win
+[includeIf "gitdir:D:/"]
+  path = ~/dotfiles/00my/.gitconfig.win
+[includeIf "gitdir:E:/"]
+  path = ~/dotfiles/00my/.gitconfig.win
+[includeIf "gitdir:F:/"]
+  path = ~/dotfiles/00my/.gitconfig.win
+[includeIf "gitdir:G:/"]
+  path = ~/dotfiles/00my/.gitconfig.win
+[includeIf "gitdir:H:/"]
+  path = ~/dotfiles/00my/.gitconfig.win
+[includeIf "gitdir:/"]
+  path = ~/dotfiles/00my/.gitconfig.nix
 [alias]
 	orphank = !gitk --all `git reflog | cut -c1-7`&
 	orphanl = !git --pretty=oneline --abbrev-commit --graph --decorate `git reflog | cut -c1-7`
@@ -48,6 +62,8 @@
 	ui = true
 #about core.autocrlf ref https://help.github.com/en/articles/configuring-git-to-handle-line-endings
 
+#[core]
+	#autocrlf = true   #true for windows, input for nix(already impl by includeIf)
 # linux& mac  git config --global core.autocrl input
 #[core]
 #	autocrlf = input
@@ -59,6 +75,5 @@
 [core]
 	fileMode = false
 	excludesfile = ~/.gitignore_global
-	autocrlf = true
 #[url "https://"]
 #	insteadOf = git://
