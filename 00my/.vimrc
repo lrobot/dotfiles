@@ -140,6 +140,7 @@ let g:clang_check_syntax_auto = 1
 let g:clang_format_style = 'Chromium'
 let g:clang_format_exec = 'clang-format'
 let g:clang_format_auto = 0
+let g:go_version_warning = 0
 
 if exists('*glaive#Install')
 autocmd BufReadPost * call glaive#Install()
