@@ -54,7 +54,7 @@ try_path_prepend ~/.node/bin
 if [ -d /Volumes/MacintoshHD ] ; then
 try_path_prepend /Volumes/MacintoshHD/works/otp_outOTP-19.2.3/bin
 try_path_prepend /Volumes/MacintoshHD/erl16/bin
-try_path_prepend /Volumes/MacintoshHD/devtools/depot_tools
+try_path_append /Volumes/MacintoshHD/devtools/depot_tools
 try_path_prepend /Volumes/MacintoshHD/devtools/flutter/bin
 
 try_DYLD_LIBRARY_PATH_prepend /Volumes/MacintoshHD/apps/benvium-libimobiledevice-macosx-8507dd2
