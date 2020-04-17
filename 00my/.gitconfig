@@ -34,8 +34,8 @@
 	echo $TEMPID ;\
 	}; echofunc"
 [user]
-	name = lrobot
-	email = lrobot.qq@gmail.com
+	name = cdluoqingquan
+	email = cdluoqingquan@jd.com
 [difftool "sourcetree"]
 	cmd = opendiff \"$LOCAL\" \"$REMOTE\"
 	path = 
@@ -74,6 +74,6 @@
 
 [core]
 	fileMode = false
-	excludesfile = ~/.gitignore_global
+	excludesfile = /Users/cdluoqingquan/.gitignore_global
 #[url "https://"]
 #	insteadOf = git://

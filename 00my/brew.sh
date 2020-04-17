@@ -32,4 +32,5 @@ brew install mc
 npm install -g react-native-cli
 echo sudo spctl --master-disable
 defaults write com.apple.dt.Xcode IDEIndexShowLog YES
+#softwareupdate -l --all --force --reset-ignored
 # qqend
