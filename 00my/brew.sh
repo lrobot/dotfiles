@@ -15,4 +15,6 @@ brew install https://raw.githubusercontent.com/kadwanev/bigboybrew/master/Librar
 curl -L https://www.npmjs.com/install.sh | sh
 npm install -g react-native-cli
 echo sudo spctl --master-disable
+defaults write com.apple.dt.Xcode IDEIndexShowLog YES
+#softwareupdate -l --all --force --reset-ignored
 # qqend

@@ -34,11 +34,11 @@
 	echo $TEMPID ;\
 	}; echofunc"
 [user]
-	name = lrobot
-	email = lrobot.qq@gmail.com
+	name = cdluoqingquan
+	email = cdluoqingquan@jd.com
 [difftool "sourcetree"]
 	cmd = opendiff \"$LOCAL\" \"$REMOTE\"
-	path =
+	path = 
 [mergetool "sourcetree"]
 	cmd = /Applications/Sourcetree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
 	trustExitCode = true
@@ -74,6 +74,6 @@
 
 [core]
 	fileMode = false
-	excludesfile = ~/.gitignore_global
+	excludesfile = /Users/cdluoqingquan/.gitignore_global
 #[url "https://"]
 #	insteadOf = git://
