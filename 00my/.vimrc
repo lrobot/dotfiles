@@ -149,5 +149,6 @@ autocmd BufReadPost * Glaive codefmt clang_format_style='Chromium'
 else
 endif
 
+set rtp+=/Volumes/MacintoshHD/homebrew/opt/fzf
 
 
