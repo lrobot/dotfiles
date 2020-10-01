@@ -29,6 +29,13 @@ brew install yarn
 brew install https://raw.githubusercontent.com/kadwanev/bigboybrew/master/Library/Formula/sshpass.rb
 brew install peco
 brew install mc
+brew install llvm
 npm install -g react-native-cli
 echo sudo spctl --master-disable
+
+
+sudo xcode-select --install
+sudo xcodebuild -license accept
+
+
 # qqend
