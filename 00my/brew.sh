@@ -38,4 +38,8 @@ sudo xcode-select --install
 sudo xcodebuild -license accept
 
 
+which defaults
+which spctl
+which diskutil
+
 # qqend

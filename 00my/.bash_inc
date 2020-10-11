@@ -140,6 +140,10 @@ alias vi='vim -u NONE'
 
 runssh(){ remote=$1 file=$2; tar czf - $file | ssh ${remote} 'D=`mktemp -d`; tar xzf - -C $D; $D/'${file} ; }
 
+if which defaults ; then
+alias sshfshome='mkdir -p ~/Documents/mnt_home_srvs && sshfs home:/srvs  ~/Documents/mnt_home_srvs'
+fi
+
 
 export LDFLAGS=""
 export CFLAGS=""
