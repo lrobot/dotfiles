@@ -1,5 +1,7 @@
 #!/bin/bash
 #set -x
+# freenom api is valid only for reseller, not for normal user!!!  https://api.freenom.com/v2/nameserver/register.xml
+# so we need our self solution
 # https://gist.github.com/a-c-t-i-n-i-u-m/bc4b1ff265b277dbf195
 # https://gist.github.com/pgaulon/3a844a626458f56903d88c5bb1463cc6
  
@@ -28,6 +30,7 @@ UserAgent_Name="Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:59.0) Gecko/20100101
 function get_ipv6_mac(){
     ifconfig en0 |grep -ve 'inet6 fe80\|inet6 fd\|inet6 fc'|grep inet6.*secured|sed 's/.*inet6 \(.*\) prefixlen.*/\1/g'
 }
+#curl http://v6.ipv6-test.com/api/myip.php?json
 function get_ipv6_curl(){
     curl http://v6.ipv6-test.com/api/myip.php
 }
