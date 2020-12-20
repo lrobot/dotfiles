@@ -11,6 +11,19 @@ brew install -v --fresh automake autoconf libtool wget
 #brew install -v --HEAD --fresh --build-from-source libimobiledevice ideviceinstaller
 brew install vim --override-system-vi --with-lua --with-tcl --with-luajit
 brew install https://raw.githubusercontent.com/kadwanev/bigboybrew/master/Library/Formula/sshpass.rb
+brew install peco
+brew install mc
+brew install llvm
+
+
+sudo xcode-select --install
+sudo xcodebuild -license accept
+
+
+which defaults
+which spctl
+which diskutil
+
 
 curl -L https://www.npmjs.com/install.sh | sh
 npm install -g react-native-cli
