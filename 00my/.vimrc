@@ -4,6 +4,56 @@
 "set background=dark
 "colorscheme default
 
+if 0
+if empty(glob('~/.vim/autoload/plug.vim'))
+  silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
+    \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+  autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
+endif
+endif
+
+" Specify a directory for plugins
+" - For Neovim: stdpath('data') . '/plugged'
+" - Avoid using standard Vim directory names like 'plugin'
+call plug#begin('~/.vim/plugged')
+" Make sure you use single quotes
+Plug 'junegunn/vim-easy-align'
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+Plug 'junegunn/fzf.vim'
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
+"Plug 'Valloric/YouCompleteMe'
+"clone too slow "Plug 'airblade/vim'
+Plug 'editorconfig/editorconfig-vim'
+"Plug 'godlygeek/tabular'
+Plug 'google/vim-codefmt'
+Plug 'google/vim-glaive'
+Plug 'google/vim-maktaba'
+Plug 'justmao945/vim-clang'
+Plug 'majutsushi/tagbar'
+"Plug 'mileszs/ack.vim'
+Plug 'pangloss/vim-javascript'
+"Plug 'python-mode/python-mode'
+"Plug 'rking/ag.vim'
+Plug 'tpope/vim-pathogen'
+Plug 'tpope/vim-sensible'
+Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-vinegar'
+Plug 'vim-airline/vim-airline'
+
+if 0
+Plug 'vim-erlang/vim-erlang-compiler'
+Plug 'vim-erlang/vim-erlang-omnicomplete'
+Plug 'vim-erlang/vim-erlang-tags'
+endif
+
+
+
+" Unmanaged plugin (manually installed and updated)
+"Plug '~/my-prototype-plugin'
+
+" Initialize plugin system
+call plug#end()
+
 " https://github.com/changemewtf/no_plugins/blob/master/no_plugins.vim
 if executable('ctags')
   "echo "ctags"
