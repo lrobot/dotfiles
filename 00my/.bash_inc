@@ -111,9 +111,7 @@ export PATH=$PATH:~/depot_tools
 
 alias jcerun='cd /Users/hello/Documents/workspace/.metadata/.plugins/org.eclipse.wst.server.core/tmp0'
 
-
-alias useproxylocal='export ALL_PROXY=socks5://127.0.0.1:1080'
-alias useproxynone='export ALL_PROXY='
+alias sshsyncfg='curl http://192.168.99.1/dot_ssh_config.txt -o ~/.ssh/config'
 alias sshp='eval `ssh-agent` && ssh-add ~/.ssh/id_rsa'
 alias ssh='ssh -A -o ServerAliveInterval=5'
 alias socksbyssh='ssh -A -o ServerAliveInterval=5 -D 127.0.0.1:1080'
