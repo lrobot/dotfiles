@@ -39,6 +39,11 @@ Plug 'tpope/vim-sensible'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-vinegar'
 Plug 'vim-airline/vim-airline'
+Plug 'fatih/vim-go'
+Plug 'ctrlpvim/ctrlp.vim'
+Plug 'godlygeek/tabular'
+Plug 'pangloss/vim-javascript'
+Plug 'airblade/vim-gitgutter'
 
 if 0
 Plug 'vim-erlang/vim-erlang-compiler'
@@ -104,10 +109,10 @@ let mapleader = "\<Space>"
 let mapleader = ","
 "echo mapleader
 
-function Bad_function_name()
+func! Bad_function_name()
  throw "Bad_function_name exits"
  set path?
-endfunction
+endfunc
 try
 if exists('*Bad_function_name')
   call Bad_function_name()
