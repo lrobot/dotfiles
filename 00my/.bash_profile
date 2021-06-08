@@ -23,3 +23,6 @@ export BIU_PATH=/Library/ibiu
 export PATH=$PATH:$BIU_PATH
 
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
+
+[ -f "$HOME/.cargo/env" ] && . "$HOME/.cargo/env"
+

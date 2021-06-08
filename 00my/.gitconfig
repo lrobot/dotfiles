@@ -73,7 +73,7 @@
 #	autocrlf = true
 
 [core]
-	fileMode = false
-	excludesfile = /Users/cdluoqingquan/.gitignore_global
+#	fileMode = false
+#	excludesfile = /Users/cdluoqingquan/.gitignore_global
 #[url "https://"]
 #	insteadOf = git://

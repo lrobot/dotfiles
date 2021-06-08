@@ -47,6 +47,8 @@ try_source() {
 
 
 
+try_path_append /usr/local/go/bin
+try_path_append ~/go/bin/go
 try_path_append ~/Library/Android/sdk/platform-tools
 try_path_prepend ~/.node/bin
 

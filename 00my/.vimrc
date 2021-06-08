@@ -39,6 +39,7 @@ set expandtab
 set shiftwidth=2
 set tabstop=2
 set wildmode=longest,list,full
+set autowrite
 
 "https://stackoverflow.com/questions/676600/vim-search-and-replace-selected-text
 vnoremap <C-r> "hy:%s/<C-r>h//gc<left><left><left>
@@ -149,6 +150,8 @@ autocmd BufReadPost * Glaive codefmt clang_format_style='Mozilla'
 autocmd BufReadPost * Glaive codefmt clang_format_style='Chromium'
 else
 endif
+set rtp+=/usr/local/opt/fzf
+
 
 
 
