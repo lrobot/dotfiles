@@ -1,4 +1,4 @@
-set -x
+#set -x
 [ -f ~/.bashrc_local ] && source ~/.bashrc_local
 source ~/dotfiles/.bashrc
 source ~/dotfiles/00my/bash_lib

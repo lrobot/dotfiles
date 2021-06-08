@@ -113,9 +113,7 @@ export PATH=$PATH:~/depot_tools
 
 alias jcerun='cd /Users/hello/Documents/workspace/.metadata/.plugins/org.eclipse.wst.server.core/tmp0'
 
-
-alias useproxylocal='export ALL_PROXY=socks5://127.0.0.1:1080'
-alias useproxynone='export ALL_PROXY='
+alias sshsyncfg='curl http://192.168.99.1/dot_ssh_config.txt -o ~/.ssh/config'
 alias sshp='eval `ssh-agent` && ssh-add ~/.ssh/id_rsa'
 alias ssh='ssh -A -o ServerAliveInterval=5'
 alias socksbyssh='ssh -A -o ServerAliveInterval=5 -D 127.0.0.1:1080'
@@ -137,10 +135,16 @@ alias idevicesyslogqq='idevicesyslog -u 7ca4d2933dc8b5d643f823e8fa3d4fb8a9ea676c
 alias grepnoios='grep -v  " dataaccessd\| kernel\| CommCenter\| locationd\| itunesstored\| coreduetd\| symptomsd\| SpringBoard\| apsd\| mDNSResponder\| parsecd\| backboardd\| MobileSMS\| assistant_service\| calaccessd\| assistantd\| syncdefaultsd\| awdd\| mediaserverd\| gamed\| searchd\| accountsd\|iPhone tccd\|iPhone swcd\| QCall\| pasted"'
 alias composer="php /usr/local/bin/composer.phar"
 
+alias allm4a2mp3='for item in `ls *.m4a` ; do echo ffmpeg -i ${item} -c:v copy -c:a libmp3lame -q:a 4 ${item%.m4a}.mp3 ; done'
 alias vi='vim -u NONE'
 
 
 runssh(){ remote=$1 file=$2; tar czf - $file | ssh ${remote} 'D=`mktemp -d`; tar xzf - -C $D; $D/'${file} ; }
+
+if which defaults ; then
+alias sshfshome='mkdir -p ~/Documents/mnt/home_srvs ; umount ~/Documents/mnt/home_srvs ; sshfs home:/srvs  ~/Documents/mnt/home_srvs'
+alias sshfstoshiba='mkdir -p ~/Documents/mnt/home_toshiba ; umount ~/Documents/mnt/home_toshiba ; sshfs home:/mnt/toshiba  ~/Documents/mnt/home_toshiba'
+fi
 
 
 export LDFLAGS=""
