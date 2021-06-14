@@ -47,6 +47,8 @@ try_source() {
 
 
 
+try_path_append /usr/local/go/bin
+try_path_append ~/go/bin/go
 try_path_append ~/Library/Android/sdk/platform-tools
 try_path_prepend ~/.node/bin
 
@@ -133,13 +135,15 @@ alias idevicesyslogqq='idevicesyslog -u 7ca4d2933dc8b5d643f823e8fa3d4fb8a9ea676c
 alias grepnoios='grep -v  " dataaccessd\| kernel\| CommCenter\| locationd\| itunesstored\| coreduetd\| symptomsd\| SpringBoard\| apsd\| mDNSResponder\| parsecd\| backboardd\| MobileSMS\| assistant_service\| calaccessd\| assistantd\| syncdefaultsd\| awdd\| mediaserverd\| gamed\| searchd\| accountsd\|iPhone tccd\|iPhone swcd\| QCall\| pasted"'
 alias composer="php /usr/local/bin/composer.phar"
 
+alias allm4a2mp3='for item in `ls *.m4a` ; do echo ffmpeg -i ${item} -c:v copy -c:a libmp3lame -q:a 4 ${item%.m4a}.mp3 ; done'
 alias vi='vim -u NONE'
 
 
 runssh(){ remote=$1 file=$2; tar czf - $file | ssh ${remote} 'D=`mktemp -d`; tar xzf - -C $D; $D/'${file} ; }
 
 if which defaults ; then
-alias sshfshome='mkdir -p ~/Documents/mnt_home_srvs && sshfs home:/srvs  ~/Documents/mnt_home_srvs'
+alias sshfshome='mkdir -p ~/Documents/mnt/home_srvs ; umount ~/Documents/mnt/home_srvs ; sshfs home:/srvs  ~/Documents/mnt/home_srvs'
+alias sshfstoshiba='mkdir -p ~/Documents/mnt/home_toshiba ; umount ~/Documents/mnt/home_toshiba ; sshfs home:/mnt/toshiba  ~/Documents/mnt/home_toshiba'
 fi
 
 
