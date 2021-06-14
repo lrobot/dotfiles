@@ -147,6 +147,7 @@ export LDFLAGS=""
 export CFLAGS=""
 export CPPFLAGS=$CFLAGS
 export HISTCONTROL=ignorespace
+export HOMEBREW_NO_AUTO_UPDATE=1
 #git daemon --export-all --enable=receive-pack --enable=upload-archive --detach --base-path=${DISK_ROOT}/repos/
 
 

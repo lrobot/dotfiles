@@ -16,6 +16,7 @@ endif
 " - For Neovim: stdpath('data') . '/plugged'
 " - Avoid using standard Vim directory names like 'plugin'
 call plug#begin('~/.vim/plugged')
+Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 " Make sure you use single quotes
 Plug 'junegunn/vim-easy-align'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
@@ -53,6 +54,7 @@ endif
 
 " Initialize plugin system
 call plug#end()
+source ~/dotfiles/00my/coc.vim
 
 " https://github.com/changemewtf/no_plugins/blob/master/no_plugins.vim
 if executable('ctags')
