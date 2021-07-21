@@ -51,10 +51,17 @@ try_subdir_path_append() {
 
 
 
-# Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
+if [ "x$NVM_DIR" == "x" ] ; then
+mkdir -p ~/.nvm
+export NVM_DIR="$HOME/.nvm"
+[ -s "/usr/local/opt/nvm/nvm.sh" ] && . "/usr/local/opt/nvm/nvm.sh"  # This loads nvm
+[ -s "/usr/local/opt/nvm/etc/bash_completion.d/nvm" ] && . "/usr/local/opt/nvm/etc/bash_completion.d/nvm"  # This loads nvm bash_completion
+fi
 
+# Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
 try_path_prepend ~/.rvm/bin
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
+
 [[ -s "$HOME/.cargo/env" ]] && . "$HOME/.cargo/env"
 
 
