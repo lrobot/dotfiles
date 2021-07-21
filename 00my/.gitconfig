@@ -38,9 +38,9 @@
 	email = lrobot.qq@gmail.com
 [difftool "sourcetree"]
 	cmd = opendiff \"$LOCAL\" \"$REMOTE\"
-	path = 
+	path =
 [mergetool "sourcetree"]
-	cmd = /Applications/SourceTree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
+	cmd = /Applications/Sourcetree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
 	trustExitCode = true
 [filter "lfs"]
 	clean = git-lfs clean -- %f
@@ -73,7 +73,9 @@
 #	autocrlf = true
 
 [core]
-	fileMode = false
+#	fileMode = false
+#	excludesfile = /Users/cdluoqingquan/.gitignore_global
+#	fileMode = false
 	excludesfile = ~/.gitignore
 #[url "https://"]
 #	insteadOf = git://

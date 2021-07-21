@@ -16,6 +16,7 @@ endif
 " - For Neovim: stdpath('data') . '/plugged'
 " - Avoid using standard Vim directory names like 'plugin'
 call plug#begin('~/.vim/plugged')
+Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 " Make sure you use single quotes
 Plug 'junegunn/vim-easy-align'
 Plug 'kien/ctrlp.vim'
@@ -40,6 +41,11 @@ Plug 'tpope/vim-sensible'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-vinegar'
 Plug 'vim-airline/vim-airline'
+Plug 'fatih/vim-go'
+Plug 'ctrlpvim/ctrlp.vim'
+Plug 'godlygeek/tabular'
+Plug 'pangloss/vim-javascript'
+Plug 'airblade/vim-gitgutter'
 
 if 0
 Plug 'vim-erlang/vim-erlang-compiler'
@@ -54,6 +60,7 @@ endif
 
 " Initialize plugin system
 call plug#end()
+source ~/dotfiles/00my/coc.vim
 
 " https://github.com/changemewtf/no_plugins/blob/master/no_plugins.vim
 if executable('ctags')
@@ -90,6 +97,7 @@ set expandtab
 set shiftwidth=2
 set tabstop=2
 set wildmode=longest,list,full
+set autowrite
 
 "https://stackoverflow.com/questions/676600/vim-search-and-replace-selected-text
 vnoremap <C-r> "hy:%s/<C-r>h//gc<left><left><left>
@@ -104,10 +112,10 @@ let mapleader = "\<Space>"
 let mapleader = ","
 "echo mapleader
 
-function Bad_function_name()
+func! Bad_function_name()
  throw "Bad_function_name exits"
  set path?
-endfunction
+endfunc
 try
 if exists('*Bad_function_name')
   call Bad_function_name()
@@ -200,6 +208,8 @@ autocmd BufReadPost * Glaive codefmt clang_format_style='Mozilla'
 autocmd BufReadPost * Glaive codefmt clang_format_style='Chromium'
 else
 endif
+set rtp+=/usr/local/opt/fzf
+
 
 set rtp+=/Volumes/MacintoshHD/homebrew/opt/fzf
 

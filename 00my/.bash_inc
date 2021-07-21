@@ -48,15 +48,22 @@ try_subdir_path_append() {
   done
 }
 
- 
 
 
 
+# Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
+
+try_path_prepend ~/.rvm/bin
+[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
+[[ -s "$HOME/.cargo/env" ]] && . "$HOME/.cargo/env"
+
+
+try_path_append /usr/local/go/bin
+try_path_append ~/go/bin/go
 try_path_append ~/Library/Android/sdk/platform-tools
 try_path_prepend ~/.node/bin
 
 try_subdir_path_append ~/Documents/0dtools
-try_path_prepend ~/.rvm/bin
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
 
 test -e "${HOME}/.iterm2_shell_integration.bash" && source "${HOME}/.iterm2_shell_integration.bash"
@@ -67,7 +74,7 @@ export NVM_DIR=~/.nvm
 
 
 ## for macbook 13
-if [ -d /Volumes/MacintoshHD ] ; then  
+if [ -d /Volumes/MacintoshHD ] ; then
 try_path_prepend /Volumes/MacintoshHD/works/otp_outOTP-19.2.3/bin
 try_path_prepend /Volumes/MacintoshHD/erl16/bin
 try_DYLD_LIBRARY_PATH_prepend /Volumes/MacintoshHD/apps/benvium-libimobiledevice-macosx-8507dd2
@@ -162,6 +169,7 @@ export LDFLAGS=""
 export CFLAGS=""
 export CPPFLAGS=$CFLAGS
 export HISTCONTROL=ignorespace
+export HOMEBREW_NO_AUTO_UPDATE=1
 #git daemon --export-all --enable=receive-pack --enable=upload-archive --detach --base-path=${DISK_ROOT}/repos/
 
 

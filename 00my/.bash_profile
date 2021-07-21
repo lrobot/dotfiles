@@ -12,3 +12,4 @@ source ~/dotfiles/00my/bash_complete
 source ~/dotfiles/00my/.bash_inc
 
 fi
+
