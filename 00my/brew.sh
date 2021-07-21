@@ -14,6 +14,10 @@ brew install https://raw.githubusercontent.com/kadwanev/bigboybrew/master/Librar
 brew install peco
 brew install mc
 brew install llvm
+brew install nvm
+nvm install v14
+nvm use v14
+
 
 
 sudo xcode-select --install

@@ -5,6 +5,7 @@ aria2
 autoconf
 automake
 axel
+bat
 bash
 bash-completion@2
 bfg
@@ -27,6 +28,7 @@ emacs
 erlang
 expat
 fcrackzip
+fd
 ffmpeg
 findutils
 flac
@@ -113,7 +115,6 @@ ngrep
 ninja
 nmap
 nnn
-node
 opencore-amr
 openjpeg
 openssl@1.1

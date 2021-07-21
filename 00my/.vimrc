@@ -18,13 +18,14 @@ endif
 call plug#begin('~/.vim/plugged')
 " Make sure you use single quotes
 Plug 'junegunn/vim-easy-align'
+Plug 'kien/ctrlp.vim'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 "Plug 'Valloric/YouCompleteMe'
 "clone too slow "Plug 'airblade/vim'
 Plug 'editorconfig/editorconfig-vim'
-"Plug 'godlygeek/tabular'
+Plug 'godlygeek/tabular'
 Plug 'google/vim-codefmt'
 Plug 'google/vim-glaive'
 Plug 'google/vim-maktaba'
